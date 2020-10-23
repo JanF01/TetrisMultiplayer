@@ -7,24 +7,34 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { TetrisComponent } from './tetris/tetris.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 
+
+const appRoutes: Routes = [
+  {path: '', component: WelcomeComponent},
+  {path: 'login', component: LoginComponent},
+  {path: 'register', component: RegisterComponent}
+]
 
 
 @NgModule({
   declarations: [
     AppComponent,
     WelcomeComponent,
-    TetrisComponent
+    TetrisComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
-  //   RouterModule.forRoot(
-  //     appRoutes,
-  //  ),
+    RouterModule.forRoot(
+      appRoutes,
+   ),
     BrowserModule,
     AppRoutingModule
   ],
   providers: [],
-  bootstrap: [AppComponent, WelcomeComponent]
+  bootstrap: [AppComponent, WelcomeComponent, LoginComponent, RegisterComponent]
 })
 export class AppModule { }

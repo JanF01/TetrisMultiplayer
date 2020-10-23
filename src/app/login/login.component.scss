@@ -1,0 +1,68 @@
+main {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle, rgb(1, 51, 116) 40%, rgba(2, 43, 97, 0.781));
+    min-height: 100vh;
+    width: 100%;
+}
+
+section {
+    color: white;
+    padding: 1em 1.5em 1em 1.5em;
+    font-family: "Roboto", monospace;
+
+    display: flex;
+    flex-direction: column;
+    width: 20em;
+    height: 50vh;
+    border-radius: 0.1em;
+    -o-border-radius: 0.2em;
+    -ms-border-radius: 0.2em;
+    -moz-border-radius: 0.2em;
+    -webkit-border-radius: 0.1em;
+
+    .e-input-group {
+        margin-top: 2em;
+
+        &:nth-child(3) {
+            margin-bottom: 2em;
+        }
+
+        input {
+            color: white !important;
+            z-index: 100;
+
+            &::placeholder {
+                color: rgba(255, 255, 255, 0.705);
+            }
+
+            &:focus {
+                border-bottom: 0.1em solid white !important;
+            }
+        }
+
+        .e-input-group-icon {
+            font-size: 1.7em;
+            color: white;
+
+        }
+
+        button {
+            margin-top: 2em;
+            width: 5em;
+        }
+    }
+
+    h2 {
+        font-size: 1.05em;
+        font-weight: 100;
+        letter-spacing: 0.04em;
+
+    }
+    .alert{
+        font-size:0.9em;
+        padding-bottom:0.9em;
+    }
+}
