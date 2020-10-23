@@ -6,6 +6,7 @@ import { RouterModule, Routes} from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { TetrisComponent } from './tetris/tetris.component';
 
 
 
@@ -13,12 +14,13 @@ import { WelcomeComponent } from './welcome/welcome.component';
 @NgModule({
   declarations: [
     AppComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    TetrisComponent
   ],
   imports: [
-    RouterModule.forRoot(
-      appRoutes,
-   ),
+  //   RouterModule.forRoot(
+  //      appRoutes,
+  //  ),
     BrowserModule,
     AppRoutingModule
   ],
