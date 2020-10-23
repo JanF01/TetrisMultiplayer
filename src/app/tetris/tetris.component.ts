@@ -27,7 +27,7 @@ let lines = 0;
 let tileDistance = 0;
 let isHardDrop = false;
 
-function gameStatus(){
+gameStatus(){
     const canvas2 = document.querySelector('.gameStatus');
     const ctx2 = canvas2.getContext('2d');
     if(gameOver){
@@ -50,7 +50,7 @@ function gameStatus(){
     }
 }
 
-function drawSquare(x, y, color){
+drawSquare(x, y, color){
     ctx.fillStyle = color;
     if(color == emptyColor){
         ctx.clearRect(x*sq,y*sq,sq,sq);
@@ -74,7 +74,7 @@ for(r=0; r<row; r++){
     }
 }
 
-function drawBoard(){
+drawBoard(){
     for(r=0; r<row; r++){
         for(c=0; c<column; c++){
             drawSquare(c,r,board[r][c]);
@@ -84,7 +84,7 @@ function drawBoard(){
 
 drawBoard();
 
-function restart(){
+restart(){
     for(r=0; r<row; r++){
         board[r] = [];
         for(c=0; c<column; c++){
@@ -121,23 +121,7 @@ let copy = [];
 
 
 
-class Tile{
-    constructor(tetromino, color){
-        this.tetromino = tetromino;
-        this.color = color;
 
-        this.tetrominoN = 0;
-        this.activeTetromino = this.tetromino[this.tetrominoN];
-
-        this.x = 3;
-        if (this.tetromino == I){
-            this.y = -2;
-        }
-        else{
-            this.y = -1;
-        }
-    }
-}
 
 Tile.prototype.fill = function(color){
     for(r=0; r<this.activeTetromino.length; r++){

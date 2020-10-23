@@ -1,8 +1,10 @@
-class blockI{
-    blockArray: Array<Array<number>>
-    rotation: number
+import {block} from './block.model';
+
+export class blockI extends block{
+
 
     constructor(){
+        super([[]],0,"I")
         this.top()
     }
     top(){
