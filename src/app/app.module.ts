@@ -16,9 +16,9 @@ import { WelcomeComponent } from './welcome/welcome.component';
     WelcomeComponent
   ],
   imports: [
-    RouterModule.forRoot(
-      appRoutes,
-   ),
+  //   RouterModule.forRoot(
+  //     appRoutes,
+  //  ),
     BrowserModule,
     AppRoutingModule
   ],

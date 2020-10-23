@@ -1,11 +1,15 @@
 
+@mixin flex(){
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
 main{
     padding-bottom:15vh;
     width:100%;
     min-height:85vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
+    @include flex();
     flex-direction:column;
     background:radial-gradient(circle,rgb(1, 51, 116) 40%,rgba(2, 43, 97, 0.781));
     font-family:'Amatic SC','Lato', Courier, monospace;
@@ -71,8 +75,7 @@ main{
       main{
     .menu{
         flex-direction:column;
-        align-items:center;
-        justify-content:center;
+        @include flex();
     }
     button{
     &:nth-child(2){
