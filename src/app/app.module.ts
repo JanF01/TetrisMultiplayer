@@ -19,11 +19,7 @@ import { TetrisComponent } from './tetris/tetris.component';
   ],
   imports: [
   //   RouterModule.forRoot(
-<<<<<<< HEAD
-  //      appRoutes,
-=======
   //     appRoutes,
->>>>>>> 7fddf67fbedd8ebefc980098bec4f817b720bcc2
   //  ),
     BrowserModule,
     AppRoutingModule
