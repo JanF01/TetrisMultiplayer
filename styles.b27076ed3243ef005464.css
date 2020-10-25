@@ -1,0 +1,1 @@
+body{margin:0 auto;background-color:red;animation:bcc 10s infinite}@keyframes bcc{0%{background-color:red}20%{background-color:#90ee90}40%{background-color:pink}60%{background-color:#ff0}80%{background-color:purple}to{background-color:red}}
