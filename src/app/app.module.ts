@@ -9,13 +9,15 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { TetrisComponent } from './tetris/tetris.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { GameService } from './game.service';
 
 
 
 const appRoutes: Routes = [
   {path: '', component: WelcomeComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'register', component: RegisterComponent}
+  {path: 'register', component: RegisterComponent},
+  {path: 'tetris', component: TetrisComponent}
 ]
 
 
@@ -34,7 +36,7 @@ const appRoutes: Routes = [
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
-  bootstrap: [AppComponent, WelcomeComponent, LoginComponent, RegisterComponent]
+  providers: [GameService],
+  bootstrap: [AppComponent, WelcomeComponent, LoginComponent, RegisterComponent, TetrisComponent]
 })
 export class AppModule { }

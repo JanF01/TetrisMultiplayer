@@ -1,4 +1,5 @@
-<div class="container">
+<main>
+<div class="container" (document:keydown)="control($event)">
     <canvas class="tetris" width="300" height="600"></canvas>
     <canvas class="gameStatus" width="300" height="600"></canvas>
 </div>
@@ -8,3 +9,4 @@
     <div class="level">Level:&#10;1</div>
     <div class="scoreboard">Scoreboard</div>
 </div>
+</main>
