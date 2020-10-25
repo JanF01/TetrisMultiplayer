@@ -41,7 +41,7 @@ export class GameService {
     800
 ];
 
-time: any = {start: 0, elapsed: 0, level: 100}
+time: any = {start: 0, elapsed: 0, level: 1000}
 
 
 rowScore(ln){
