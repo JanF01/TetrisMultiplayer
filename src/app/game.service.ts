@@ -43,6 +43,11 @@ export class GameService {
 
 time: any = {start: 0, elapsed: 0, level: 1000}
 
+constructor() {
+
+
+}
+
 
 rowScore(ln){
     this.score += this.scores[ln-1]*this.level;
@@ -70,8 +75,4 @@ increseLevel(){
     }
 }
 
-  constructor() {
-
-
-   }
 }
