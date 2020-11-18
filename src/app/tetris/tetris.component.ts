@@ -1,4 +1,4 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { GameService } from '../game.service';
 
@@ -12,7 +12,6 @@ import { blockO } from './models/blockO.model'
 import { blockS } from './models/blockS.model'
 import { blockT } from './models/blockT.model'
 import { blockZ } from './models/blockZ.model'
-import { mapToMapExpression } from '@angular/compiler/src/render3/util';
 
 @Component({
   selector: 'app-tetris',
@@ -20,7 +19,7 @@ import { mapToMapExpression } from '@angular/compiler/src/render3/util';
   styleUrls: ['./tetris.component.scss']
 })
 
-export class TetrisComponent implements AfterViewInit {
+export class TetrisComponent{
 
   private canvas: HTMLCanvasElement
   private ctx: CanvasRenderingContext2D
@@ -38,7 +37,7 @@ export class TetrisComponent implements AfterViewInit {
 
    }
 
-  ngAfterViewInit(): void {
+  prepareGame(){
     this.canvas = document.querySelector('.tetris')
     this.ctx = this.canvas.getContext('2d')
     this.canvas2 = document.querySelector('.gameStatus')
@@ -76,7 +75,7 @@ export class TetrisComponent implements AfterViewInit {
     setTimeout(()=>{
         this.drop();
     },1000);
-
+ 
   }
 
 
