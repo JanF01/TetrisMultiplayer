@@ -1,21 +1,21 @@
 
 <main>
     <section>
-        <h2>Log in to your organizer</h2>
+        <h2>Log in to your account</h2>
     <div class="e-input-group">
-    <input class="e-input" type="text" required placeholder="Login">
-    <span class="e-input-group-icon"></span>
+    <input class="e-input" type="text" required placeholder="Login" [(ngModel)]="this.login">
+    <span class="e-input-group-icon"><fa-icon [icon]="faHatWizard"></fa-icon></span>
     </div>
     <div class="e-input-group">
-        <input class="e-input" placeholder="Password" type="password" required >
-        <span class="e-input-group-icon"></span>
+        <input class="e-input" placeholder="Password" type="password" required [(ngModel)]="this.password">
+        <span class="e-input-group-icon"><fa-icon [icon]="faKey"></fa-icon></span>
 
         </div>
-        <div class="alert"></div>
+        <div class="alert">{{this.alert}}</div>
         <div class="buttons">
         <div class="e-btn-group">
-       <button ejs-button cssClass="e-success" >Log in</button>
-       <button ejs-button cssClass="e-info" >Create organizer</button>
+       <button ejs-button cssClass="e-success" (click)="checkLogin()">Log in</button>
+       <button ejs-button cssClass="e-info" routerLink="/register" routerLinkActive="true">Create organizer</button>
        </div>
        </div>
     </section>

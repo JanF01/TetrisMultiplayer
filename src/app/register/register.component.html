@@ -1,1 +1,32 @@
-<p>register works!</p>
+<main>
+    <section>
+        <h2>Create a new account</h2>
+    <div class="e-input-group">
+    <input class="e-input" type="text" required [(ngModel)]="this.login" placeholder="Login" (onchange)="logValue()">
+    <span class="e-input-group-icon"><fa-icon [icon]="faHatWizard"></fa-icon></span>
+    </div>
+    <div class="e-input-group">
+        <input class="e-input" placeholder="Email" type="text" required [(ngModel)]="this.email">
+        <span class="e-input-group-icon"><fa-icon [icon]="faKey"></fa-icon></span>
+    
+        </div>
+    <div class="e-input-group">
+        <input class="e-input" placeholder="Password" type="password" required [(ngModel)]="this.password">
+        <span class="e-input-group-icon"><fa-icon [icon]="faKey"></fa-icon></span>
+    
+        </div>
+    <div class="e-input-group">
+        <input class="e-input" placeholder="Repeat Password" type="password" required [(ngModel)]="this.passRepeat">
+        <span class="e-input-group-icon"><fa-icon [icon]="faKey"></fa-icon></span>
+        
+    </div>
+    <div class="alert">{{this.alert}}</div>
+        <div class="buttons">
+        <div class="e-btn-group">
+       <button ejs-button cssClass="e-success" (click)="register()">Register account</button>
+       </div>
+       </div>
+    </section>
+    
+    </main>
+    
