@@ -4,6 +4,7 @@ import { Subject } from 'rxjs';
 @Injectable()
 export class GameService {
 
+  first: boolean = false;
   row: number = 20
   column: number = 10
   sq: number = 30
@@ -21,6 +22,7 @@ export class GameService {
   board: Array<Array<string>> = [];
   copy: any = []
   tile: any
+  
 
   tiles: Array<Array<any>> = [
     ['#575fcf'],
