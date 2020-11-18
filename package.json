@@ -26,6 +26,7 @@
     "@syncfusion/ej2-angular-buttons": "^18.3.47",
     "@syncfusion/ej2-angular-inputs": "^18.3.47",
     "@syncfusion/ej2-angular-splitbuttons": "^18.3.47",
+    "@syncfusion/ej2-base": "^18.3.49",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.3",
     "zone.js": "~0.10.2"
