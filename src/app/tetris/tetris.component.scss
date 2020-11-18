@@ -5,34 +5,39 @@ main{
     background: radial-gradient(circle, rgb(1, 51, 116) 40%, rgba(2, 43, 97, 0.781));
     min-height: 100vh;
     width: 100%;
-}
-.container{
-    margin-top: 5vh;
-    height: 600px;
-    display: flex;
-}
-.stats{
-    margin-top: 5vh;
-    height: 600px;
-    width: 200px;
-    display: inline-block;
-
-}
-.gameStatus{
-    position: absolute;
-    width: 302px;
-    height: 600px;
-}
-.tetris{
-    display: flex;
-    border: 2px solid white;
-}
-.score, .lines, .level, .scoreboard{
-    color: white;
-    font-family: 'Press Start 2P', cursive;
-    white-space: pre-wrap;
-    margin: 1rem;
-}
-.scoreboard{
-    border-bottom: 2px solid white;
+    .container{
+        margin-top: 5vh;
+        height: 600px;
+        display: none;
+        button{
+            padding:0.3em;
+            background:blue;
+            color:white;
+            border:none;
+        }
+        .gameStatus{
+            position: absolute;
+            width: 302px;
+            height: 600px;
+        }
+        .tetris{
+            display: flex;
+            border: 2px solid white;
+        }
+    }
+    .stats{
+        margin-top: 5vh;
+        height: 600px;
+        width: 200px;
+        display: none;
+        .score, .lines, .level, .scoreboard{
+            color: white;
+            font-family: 'Press Start 2P', cursive;
+            white-space: pre-wrap;
+            margin: 1rem;
+        }
+        .scoreboard{
+            border-bottom: 2px solid white;
+        }
+    }
 }

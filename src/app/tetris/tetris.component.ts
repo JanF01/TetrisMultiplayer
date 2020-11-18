@@ -28,26 +28,28 @@ export class TetrisComponent{
   private scr: HTMLElement
   private ln: HTMLElement
   private lvl: HTMLElement
-  private now: number = 0;
+  private now: number = 0
 
   private scoreSub:Subscription
 
+  stop: boolean = false;
 
   constructor(private gameService: GameService) {
-
    }
 
-  prepareGame(){
+  startGame(){
+
+     (document.getElementsByClassName('container')[0] as HTMLElement).style.display="flex";
+     (document.getElementsByClassName('stats')[0] as HTMLElement).style.display="inline-block";
+
     this.canvas = document.querySelector('.tetris')
     this.ctx = this.canvas.getContext('2d')
     this.canvas2 = document.querySelector('.gameStatus')
     this.ctx2 = this.canvas2.getContext('2d')
-    this.scr = document.querySelector('.score')
-    this.ln = document.querySelector('.lines')
-    this.lvl = document.querySelector('.level')
-
+    if(!this.gameService.first){
     this.prepareBoard();
     this.drawBoard();
+    
     this.gameService.tiles[0].unshift(new blockI());
     this.gameService.tiles[1].unshift(new blockJ());
     this.gameService.tiles[2].unshift(new blockL());
@@ -55,6 +57,13 @@ export class TetrisComponent{
     this.gameService.tiles[4].unshift(new blockS());
     this.gameService.tiles[5].unshift(new blockT());
     this.gameService.tiles[6].unshift(new blockZ());
+    this.gameService.first=true;
+    }
+
+    this.scr = document.querySelector('.score')
+    this.ln = document.querySelector('.lines')
+    this.lvl = document.querySelector('.level')
+
     this.gameService.tile = this.randomTile();
 
     this.scoreSub = this.gameService.change.subscribe((value) => {
@@ -72,10 +81,12 @@ export class TetrisComponent{
                  console.log("ERROR")
         }
       });
-    setTimeout(()=>{
+
+      setTimeout(()=>{
         this.drop();
-    },1000);
- 
+      },1000);
+
+
   }
 
 
@@ -137,12 +148,6 @@ drawBoard(gameService = this.gameService, drawSquare = this.drawSquare, ctx = th
 }
 
 restart(){
-    for(let r=0; r<this.gameService.row; r++){
-        this.gameService.board[r] = [];
-        for(let c=0; c<this.gameService.column; c++){
-            this.gameService.board[r][c] = this.gameService.emptyColor;
-        }
-    }
     this.gameService.flags.gameOver=false;
     this.gameService.lines=0;
     this.gameService.score=0;
