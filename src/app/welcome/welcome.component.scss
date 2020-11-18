@@ -14,7 +14,7 @@ main{
     background:radial-gradient(circle,rgb(1, 51, 116) 40%,rgba(2, 43, 97, 0.781));
     font-family: 'Manrope', sans-serif;
   h1,h2{
-      font-size:4em;
+      font-size:4.3em;
       color:rgb(255, 255, 255);
       font-weight:800;
       margin:0;
@@ -28,10 +28,10 @@ main{
       letter-spacing:0.01em;
   }
   h2{
-      font-size:1.3em;
+      font-size:1.1em;
       font-weight:100;
       letter-spacing:0.2em;
-      margin-top:0.2em;
+      margin-top:0.5em;
       // border-bottom:0.08em white solid;
       // padding:0.2em;
       // border-radius:0.2em;
@@ -39,11 +39,11 @@ main{
   button{
       border:none;
       font-family: 'Manrope', sans-serif;
-      font-size:1.3em;
+      font-size:1.2em;
       background:rgba(255,255,255,0);
-      border:0.1em solid white;
-      width:9em;
-      padding:0.25em 0 0.34em 0;
+      border:0.14em solid white;
+      width:11em;
+      padding:0.4em 0 0.4em 0em;
       border-radius:5em;
       -ms-border-radius:5em;
       -moz-border-radius:5em;
