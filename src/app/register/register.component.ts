@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { faKey,faHatWizard } from '@fortawesome/free-solid-svg-icons'
-import { VerificationService, DataPayload } from "../verification.service";
+import { VerificationService } from "../verification.service";
 import { Router } from '@angular/router'
 @Component({
   selector: 'app-register',
@@ -15,15 +15,9 @@ export class RegisterComponent implements OnInit {
 
   faKey = faKey
   faHatWizard = faHatWizard
-
-  credentials: DataPayload = {
-
-   id:0,
-   login: '',
-   email: '',
-   password: ''
-
-  }
+  login: string = ''
+  password: string = ''
+  email: string = ''
 
   constructor(private verificationService: VerificationService,private router: Router) { }
 
@@ -33,7 +27,7 @@ export class RegisterComponent implements OnInit {
   logValue(): boolean {
 
    
-    if (this.credentials.login.length > 4) {
+    if (this.login.length > 4) {
      return false
     }
     return true
@@ -42,8 +36,9 @@ export class RegisterComponent implements OnInit {
   }
   register() {
     if(!this.logValue()){
-   if(this.credentials.password==this.passRepeat){
-        this.verificationService.register(this.credentials).subscribe(()=>{
+   if(this.password==this.passRepeat){
+        this.verificationService.register(this.login, this.password).subscribe((res)=>{
+
            this.router.navigateByUrl("/panel");
         },
         err=>{

@@ -2,16 +2,16 @@
     <section>
         <h2>Create a new account</h2>
     <div class="e-input-group">
-    <input class="e-input" type="text" required [(ngModel)]="this.credentials.login" placeholder="Login" (onchange)="logValue()">
+    <input class="e-input" type="text" required [(ngModel)]="this.login" placeholder="Login" (onchange)="logValue()">
     <span class="e-input-group-icon"><fa-icon [icon]="faHatWizard"></fa-icon></span>
     </div>
     <div class="e-input-group">
-        <input class="e-input" placeholder="Email" type="text" required [(ngModel)]="this.credentials.email">
+        <input class="e-input" placeholder="Email" type="text" required [(ngModel)]="this.email">
         <span class="e-input-group-icon"><fa-icon [icon]="faKey"></fa-icon></span>
     
         </div>
     <div class="e-input-group">
-        <input class="e-input" placeholder="Password" type="password" required [(ngModel)]="this.credentials.password">
+        <input class="e-input" placeholder="Password" type="password" required [(ngModel)]="this.password">
         <span class="e-input-group-icon"><fa-icon [icon]="faKey"></fa-icon></span>
     
         </div>

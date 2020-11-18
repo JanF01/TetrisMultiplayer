@@ -11,16 +11,25 @@ import { Router } from '@angular/router'
 export class AppComponent implements OnInit{
   title = 'multiTetris';
   user: User;
-  constructor(private guardService: GuardService, private router: Router){
+  constructor(private guard: GuardService, private router: Router){
 
   }
   ngOnInit(){
-    this.guardService.verifyUser().subscribe((data: string)=>{
-      const res = JSON.parse(data)
-       if(res!="No user"){
-         this.user = new User(res.login,res.nickname,res.rank,res.level,res.experience,res.money);
+
+    this.isLoggedIn();
+  }
+
+
+  isLoggedIn(){
+    if(this.guard.loggedIn()){
+ 
+         this.user = this.guard.getUserData();
          this.router.navigateByUrl("/panel");
-       }
-    });
+
+    }
+  }
+
+  logOut(){
+    this.guard.logOut();
   }
 }
