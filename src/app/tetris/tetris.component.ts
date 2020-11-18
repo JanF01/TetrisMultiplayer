@@ -12,6 +12,7 @@ import { blockO } from './models/blockO.model'
 import { blockS } from './models/blockS.model'
 import { blockT } from './models/blockT.model'
 import { blockZ } from './models/blockZ.model'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tetris',
@@ -34,13 +35,14 @@ export class TetrisComponent{
 
   stop: boolean = false;
 
-  constructor(private gameService: GameService) {
+  constructor(private gameService: GameService,private router: Router) {
    }
 
   startGame(){
 
      (document.getElementsByClassName('container')[0] as HTMLElement).style.display="flex";
      (document.getElementsByClassName('stats')[0] as HTMLElement).style.display="inline-block";
+     (document.getElementsByClassName('start')[0] as HTMLElement).style.display="none";
 
     this.canvas = document.querySelector('.tetris')
     this.ctx = this.canvas.getContext('2d')
@@ -63,6 +65,9 @@ export class TetrisComponent{
     this.scr = document.querySelector('.score')
     this.ln = document.querySelector('.lines')
     this.lvl = document.querySelector('.level')
+    this.gameService.flags.gameOver=false;
+    this.gameService.flags.gamePaused=false;
+    this.gameService.flags.isHardDrop=false;
 
     this.gameService.tile = this.randomTile();
 
@@ -90,25 +95,30 @@ export class TetrisComponent{
   }
 
 
-  gameStatus(){
+  gameStatus(gameService = this.gameService, ctx2 = this.ctx2, router = this.router){
 
-    if(this.gameService.flags.gameOver){
-        this.ctx2.font = "20px 'Press Start 2P'";
-        this.ctx2.globalAlpha = 0.1;
-        this.ctx2.fillRect(0,0,300,600);
-        this.ctx2.globalAlpha = 1;
-        this.ctx2.fillText("GAME OVER", 60, this.gameService.row*this.gameService.sq/2);
+    if(gameService.flags.gameOver){
+        ctx2.font = "35px 'Manrope'";
+        ctx2.globalAlpha = 0.3;
+        ctx2.fillRect(0,0,300,600);
+        ctx2.globalAlpha = 1;
+        ctx2.fillStyle = "#FFFFFF";
+        ctx2.fillText("GAME OVER", 60, gameService.row*gameService.sq/2);
+        setTimeout(()=>{
+        router.navigateByUrl("/login")
+        },1500);
         return;
     }
-    if(this.gameService.flags.gamePaused){
-        this.ctx2.font = "20px 'Press Start 2P'";
-        this.ctx2.globalAlpha = 0.2;
-        this.ctx2.fillRect(0,0,300,600);
-        this.ctx2.globalAlpha = 1;
-        this.ctx2.fillText("GAME PAUSED", 40, this.gameService.row*this.gameService.sq/2);
+    if(gameService.flags.gamePaused){
+        ctx2.font = "35px 'Manrope'";
+        ctx2.fillStyle = "#FFFFFF";
+        ctx2.globalAlpha = 0.2;
+        ctx2.fillRect(0,0,300,600);
+        ctx2.globalAlpha = 1;
+        ctx2.fillText("GAME PAUSED", 40, gameService.row*gameService.sq/2);
     }
     else{
-        this.ctx2.clearRect(0,0,300,600);
+        ctx2.clearRect(0,0,300,600);
     }
 }
 
@@ -165,13 +175,13 @@ restart(){
 
 
 
-    randomTile(gameService = this.gameService, ctx = this.ctx): Tile{
+    randomTile(gameService = this.gameService, ctx = this.ctx, ctx2 = this.ctx2, router = this.router): Tile{
         if (gameService.copy.length < 1){
             gameService.copy = gameService.numbers.slice(0);
         }
         let r = gameService.copy[Math.floor(Math.random()*gameService.copy.length)];
         gameService.copy.splice(gameService.copy.indexOf(r),1);
-        return new Tile (gameService.tiles[r][0].blockArray, gameService.tiles[r][1],ctx, gameService);
+        return new Tile (gameService.tiles[r][0].blockArray, gameService.tiles[r][1], ctx, ctx2, gameService, router);
     }
 
 

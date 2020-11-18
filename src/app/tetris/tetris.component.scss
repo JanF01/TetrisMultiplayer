@@ -1,3 +1,11 @@
+
+@mixin borderRadius($r){
+    -moz-border-radius:$r;
+    -webkit-border-radius:$r;
+    -ms-border-radius:$r;
+    border-radius:$r;
+}
+
 main{
     display: flex;
     align-items: center;
@@ -5,22 +13,37 @@ main{
     background: radial-gradient(circle, rgb(1, 51, 116) 40%, rgba(2, 43, 97, 0.781));
     min-height: 100vh;
     width: 100%;
+    button{
+        font-family:'Manrope';
+        font-size:1.2em;
+        width:10em;
+        padding:0.6em;
+        background:rgb(72, 7, 133);
+        border:none;
+        border-bottom: solid 0.34em rgb(56, 4, 105);
+        box-shadow:0em 0.1em 0.3em -0.1em rgb(71, 3, 54);
+        color:white;
+        letter-spacing:0.13em;
+        @include borderRadius(0.3em);
+        transition:0.13s all;
+        &:hover{
+            cursor:pointer;
+            transform:scale(0.94);      
+          }
+       
+    }
     .container{
         margin-top: 5vh;
         height: 600px;
         display: none;
-        button{
-            padding:0.3em;
-            background:blue;
-            color:white;
-            border:none;
-        }
         .gameStatus{
             position: absolute;
             width: 302px;
             height: 600px;
+            color:white;
         }
         .tetris{
+            color:white;
             display: flex;
             border: 2px solid white;
         }
