@@ -36,6 +36,22 @@ main{
         margin-top: 5vh;
         height: 600px;
         display: none;
+        h2{
+            position:relative;
+            left:130px;
+            top:-14px;
+            font-family:'Manrope',sans-serif;
+            color:white;
+            font-size:1em;
+            font-weight:normal;
+            letter-spacing:0.04em;
+        }
+        .nextTile{
+            width: 165px;
+            height: 200px;
+            color:white;
+
+        }
         .gameStatus{
             position: absolute;
             width: 302px;

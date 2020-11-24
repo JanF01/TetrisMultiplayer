@@ -26,19 +26,22 @@ export class TetrisComponent{
   private ctx: CanvasRenderingContext2D
   private canvas2: HTMLCanvasElement
   private ctx2: CanvasRenderingContext2D
+  private canvas3: HTMLCanvasElement
+  private ctx3: CanvasRenderingContext2D
   private scr: HTMLElement
   private ln: HTMLElement
   private lvl: HTMLElement
   private now: number = 0
 
   private scoreSub:Subscription
+  private newTileSub: Subscription
 
   stop: boolean = false;
 
   constructor(private gameService: GameService,private router: Router) {
    }
 
-  startGame(){
+  startGame(): void{
 
      (document.getElementsByClassName('container')[0] as HTMLElement).style.display="flex";
      (document.getElementsByClassName('stats')[0] as HTMLElement).style.display="inline-block";
@@ -48,6 +51,8 @@ export class TetrisComponent{
     this.ctx = this.canvas.getContext('2d')
     this.canvas2 = document.querySelector('.gameStatus')
     this.ctx2 = this.canvas2.getContext('2d')
+    this.canvas3 = document.querySelector('.nextTile')
+    this.ctx3 = this.canvas2.getContext('2d')
     if(!this.gameService.first){
     this.prepareBoard();
     this.drawBoard();
@@ -62,6 +67,10 @@ export class TetrisComponent{
     this.gameService.first=true;
     }
 
+    this.gameService.newTile.subscribe(tile=>{
+        this.drawNextTile(tile);
+    });
+
     this.scr = document.querySelector('.score')
     this.ln = document.querySelector('.lines')
     this.lvl = document.querySelector('.level')
@@ -69,7 +78,10 @@ export class TetrisComponent{
     this.gameService.flags.gamePaused=false;
     this.gameService.flags.isHardDrop=false;
 
+    this.gameService.nextTile = this.randomTile();
     this.gameService.tile = this.randomTile();
+
+    this.gameService.newTileCreated();
 
     this.scoreSub = this.gameService.change.subscribe((value) => {
         switch(value){
@@ -87,6 +99,7 @@ export class TetrisComponent{
         }
       });
 
+
       setTimeout(()=>{
         this.drop();
       },1000);
@@ -95,7 +108,7 @@ export class TetrisComponent{
   }
 
 
-  gameStatus(gameService = this.gameService, ctx2 = this.ctx2, router = this.router){
+  gameStatus(gameService = this.gameService, ctx2 = this.ctx2, router = this.router): void{
 
     if(gameService.flags.gameOver){
         ctx2.font = "35px 'Manrope'";
@@ -122,7 +135,23 @@ export class TetrisComponent{
     }
 }
 
-drawSquare(x, y, color, gameService = this.gameService, ctx = this.ctx){
+
+drawNextTile(tile: Tile){
+    for(let r=0; r<6; r++){
+        for(let c=0; c<8; c++){
+            this.drawSquare(c,r,this.gameService.emptyColor,this.gameService,this.ctx3);
+        }
+    }
+    for(let r=0; r<tile.activeTetromino.length; r++){
+        for(let c=0; c<tile.activeTetromino.length; c++){
+            if(tile.activeTetromino[r][c]){
+                this.drawSquare(tile.x + c +1, tile.y + r + 3, tile.color, this.gameService, this.ctx3);
+            }
+        }
+    }
+}
+
+drawSquare(x, y, color, gameService = this.gameService, ctx = this.ctx): void{
     let sq = gameService.sq;
     ctx.fillStyle = color;
     if(color == gameService.emptyColor){
@@ -139,7 +168,7 @@ drawSquare(x, y, color, gameService = this.gameService, ctx = this.ctx){
 }
 
 
-prepareBoard(){
+prepareBoard(): void{
     for(let r=0; r<this.gameService.row; r++){
         this.gameService.board[r] = [];
         for(let c=0; c<this.gameService.column; c++){
@@ -149,7 +178,7 @@ prepareBoard(){
 }
 
 
-drawBoard(gameService = this.gameService, drawSquare = this.drawSquare, ctx = this.ctx){
+drawBoard(gameService = this.gameService, drawSquare = this.drawSquare, ctx = this.ctx): void{
     for(let r=0; r<gameService.row; r++){
         for(let c=0; c<gameService.column; c++){
             drawSquare(c,r,gameService.board[r][c],gameService,ctx);
@@ -157,7 +186,7 @@ drawBoard(gameService = this.gameService, drawSquare = this.drawSquare, ctx = th
     }
 }
 
-restart(){
+restart(): void{
     this.gameService.flags.gameOver=false;
     this.gameService.lines=0;
     this.gameService.score=0;
@@ -186,7 +215,7 @@ restart(){
 
 
 
-control(event){
+control(event): void{
     if(event.keyCode == 82){
         this.restart();
     }
@@ -232,7 +261,7 @@ control(event){
 
 fps: number = 1000/60;
 
-drop(gameService = this.gameService, now=0){
+drop(gameService = this.gameService, now=0): void{
     gameService.time.elapsed = now - gameService.time.start;
     if(gameService.time.elapsed > gameService.time.level){
         gameService.tile.moveDown(this.drawSquare, this.randomTile, this.drawBoard, this.gameStatus);
@@ -243,7 +272,7 @@ drop(gameService = this.gameService, now=0){
     }
 }
 
-  map(value, in_min, in_max, out_min, out_max) {
+  map(value, in_min, in_max, out_min, out_max):number {
     return (value - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
   }
 

@@ -83,7 +83,9 @@ export class Tile{
         }
         else{
               this.lock(dS,dB,gS);
-              this.gameService.tile = rT(this.gameService,this.ctx,this.ctx2, this.router);
+              this.gameService.tile = this.gameService.nextTile;
+              this.gameService.nextTile = rT(this.gameService,this.ctx,this.ctx2, this.router);
+              this.gameService.newTileCreated();
         }
     }
 

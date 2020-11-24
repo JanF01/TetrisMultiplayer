@@ -1,8 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import { Tile } from './tetris/models/tile.model';
 
 @Injectable()
 export class GameService {
+
+
+  newTile: Subject<Tile> = new Subject<Tile>();
 
   first: boolean = false;
   row: number = 20
@@ -22,6 +26,7 @@ export class GameService {
   board: Array<Array<string>> = [];
   copy: any = []
   tile: any
+  nextTile: any;
   
 
   tiles: Array<Array<any>> = [
@@ -75,6 +80,10 @@ increseLevel(){
         this.time.level -= 40;
         this.change.next("lvl");
     }
+}
+
+newTileCreated(){
+  this.newTile.next(this.nextTile);
 }
 
 }

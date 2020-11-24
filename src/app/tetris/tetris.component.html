@@ -2,6 +2,8 @@
 
     <button class="start" (click)="startGame()">START</button>
 <div class="container" (document:keydown)="control($event)">
+    <h2>Next Block</h2>
+    <canvas class="nextTile" width="150" height="200"></canvas>
     <canvas class="tetris" width="300" height="600"></canvas>
     <canvas class="gameStatus" width="300" height="600"></canvas>
 </div>
