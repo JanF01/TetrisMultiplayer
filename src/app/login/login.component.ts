@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { faKey,faHatWizard } from '@fortawesome/free-solid-svg-icons';
+import { GuardService } from '../guard.service';
 import { VerificationService } from '../verification.service';
 
 @Component({
@@ -17,7 +18,7 @@ export class LoginComponent implements OnInit {
   password: string = ''
 
   
-  constructor(private verificationService: VerificationService, private router: Router) { }
+  constructor(private verificationService: VerificationService, private router: Router, private guard: GuardService) { }
 
   ngOnInit(): void {
   }
@@ -25,7 +26,10 @@ export class LoginComponent implements OnInit {
   checkLogin() {
     this.verificationService.login(this.login,this.password).subscribe((res)=>{
         if(res.token){
-        this.router.navigateByUrl("/panel");
+          this.guard.loggedIn();
+          location.reload();
+        }else{
+          this.alert = res;
         }
     },
     err=>{

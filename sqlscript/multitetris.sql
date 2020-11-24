@@ -101,13 +101,14 @@ CREATE TABLE `ranking_position` (
 CREATE TABLE `user` (
   `id` int(11) NOT NULL,
   `username` varchar(20) NOT NULL,
-  `password` varchar(45) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `email` varchar(60) NOT NULL,
   `nickname` varchar(25) NOT NULL,
   `rank` varchar(3) NOT NULL,
   `level` int(11) NOT NULL,
   `experience` varchar(45) NOT NULL,
-  `money` int(11) NOT NULL
+  `money` int(11) NOT NULL,
+  `last_login` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------

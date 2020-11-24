@@ -6,6 +6,9 @@ nav{
     display:flex;
     width:100%;
     h3{
+        position:absolute;
+        top:0;
+        left:0;
         width:10%;
 color:white;
 font-size:1.34em;
@@ -17,7 +20,7 @@ outline:none;
     }
     ul{
         position:relative;
-        width:85%;
+        width:100%;
         margin-right:2em;
         display:flex;
         justify-content:flex-end;

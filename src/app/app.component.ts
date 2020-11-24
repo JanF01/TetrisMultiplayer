@@ -33,5 +33,9 @@ export class AppComponent implements OnInit{
     this.guard.logOut();
   }
 
+  getLoginStatus(){
+    return this.guard.logged;
+  }
+
 
 }

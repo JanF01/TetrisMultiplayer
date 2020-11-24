@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { GuardService } from '../guard.service';
 
 @Component({
   selector: 'app-panel',
@@ -8,9 +10,12 @@ import { Component, OnInit } from '@angular/core';
 export class PanelComponent implements OnInit {
 
 
-  constructor() { }
+  constructor(private guard: GuardService, private router: Router) { }
 
   ngOnInit(): void {
+    if(!this.guard.logged){
+          this.router.navigateByUrl("/");
+    }
   }
   
 

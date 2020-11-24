@@ -16,6 +16,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ButtonModule } from '@syncfusion/ej2-angular-buttons';
 import { enableRipple } from '@syncfusion/ej2-base';
 
+
+import { ReactiveFormsModule } from '@angular/forms';
 import { GameService } from './game.service';
 import { VerificationService } from './verification.service';
 import { GuardService } from './guard.service';
@@ -53,6 +55,7 @@ const appRoutes: Routes = [
     ButtonModule,
     HttpClientModule,
     FontAwesomeModule,
+    ReactiveFormsModule
   ],
   providers: [GameService, VerificationService, GuardService],
   bootstrap: [AppComponent, WelcomeComponent, LoginComponent, RegisterComponent, TetrisComponent]
