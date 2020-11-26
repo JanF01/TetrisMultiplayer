@@ -11,10 +11,11 @@ nav{
         left:0;
         width:10%;
 color:white;
-font-size:1.34em;
+font-size:1.27em;
 letter-spacing:0.15em;
 font-weight:200;
 margin:0.5em 0em 0em 1.2em;
+z-index:10;
 cursor:pointer;
 outline:none;
     }
@@ -29,7 +30,7 @@ outline:none;
         height:1.8em;
         li{
           color:white;
-          font-size:1.34em;
+          font-size:1.27em;
           font-weight:200;
           letter-spacing:0.1em;
           cursor:pointer;

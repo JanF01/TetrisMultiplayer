@@ -42,13 +42,15 @@ export class GameService {
   numbers: Array<string> = ['0','1','2','3','4','5','6']
 
   scores: Array<number> = [
-    100,
-    300,
-    500,
+    30,
+    120,
+    400,
     800
 ];
 
 time: any = {start: 0, elapsed: 0, level: 1000}
+
+skipBarStatus = 0;
 
 constructor() {
 

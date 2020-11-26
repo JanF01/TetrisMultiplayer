@@ -28,6 +28,7 @@ export class TetrisComponent{
   private ctx2: CanvasRenderingContext2D
   private canvas3: HTMLCanvasElement
   private ctx3: CanvasRenderingContext2D
+  private skipBar: HTMLElement
   private scr: HTMLElement
   private ln: HTMLElement
   private lvl: HTMLElement
@@ -38,6 +39,7 @@ export class TetrisComponent{
 
   stop: boolean = false;
 
+
   constructor(private gameService: GameService,private router: Router) {
    }
 
@@ -46,15 +48,19 @@ export class TetrisComponent{
      (document.getElementsByClassName('container')[0] as HTMLElement).style.display="flex";
      (document.getElementsByClassName('stats')[0] as HTMLElement).style.display="inline-block";
      (document.getElementsByClassName('start')[0] as HTMLElement).style.display="none";
+     document.getElementById("tutorial").style.display = "none";
 
     this.canvas = document.querySelector('.tetris')
     this.ctx = this.canvas.getContext('2d')
     this.canvas2 = document.querySelector('.gameStatus')
     this.ctx2 = this.canvas2.getContext('2d')
     this.canvas3 = document.querySelector('.nextTile')
-    this.ctx3 = this.canvas2.getContext('2d')
-    if(!this.gameService.first){
+    this.ctx3 = this.canvas3.getContext('2d')
+    this.skipBar = document.getElementsByClassName('skipBar')[0] as HTMLElement;
+
     this.prepareBoard();
+
+    if(!this.gameService.first){
     this.drawBoard();
     
     this.gameService.tiles[0].unshift(new blockI());
@@ -70,6 +76,8 @@ export class TetrisComponent{
     this.gameService.newTile.subscribe(tile=>{
         this.drawNextTile(tile);
     });
+
+    this.gameService.skipBarStatus=0; 
 
     this.scr = document.querySelector('.score')
     this.ln = document.querySelector('.lines')
@@ -136,7 +144,19 @@ export class TetrisComponent{
 }
 
 
+skipBarRise(status: number){
+    if(status<=100){
+   this.skipBar.style.width=(status*3+3)+"px";
+    }else{
+        this.skipBar.style.background="rgba(21, 103, 216, 1)";
+        this.skipBar.style.boxShadow="0 0 0.15em 0.1em rgb(37, 133, 241)";
+    }
+}
+
+
 drawNextTile(tile: Tile){
+    this.gameService.skipBarStatus+=10; 
+    this.skipBarRise(this.gameService.skipBarStatus);
     for(let r=0; r<6; r++){
         for(let c=0; c<8; c++){
             this.drawSquare(c,r,this.gameService.emptyColor,this.gameService,this.ctx3);
@@ -145,10 +165,16 @@ drawNextTile(tile: Tile){
     for(let r=0; r<tile.activeTetromino.length; r++){
         for(let c=0; c<tile.activeTetromino.length; c++){
             if(tile.activeTetromino[r][c]){
-                this.drawSquare(tile.x + c +1, tile.y + r + 3, tile.color, this.gameService, this.ctx3);
+                this.drawSquare(tile.x + c - 3, tile.y + r + 3, tile.color, this.gameService, this.ctx3);
             }
         }
     }
+}
+
+switchBlocks(){
+    this.gameService.tile = this.gameService.nextTile;
+    this.gameService.nextTile = this.randomTile();
+    this.drawNextTile(this.gameService.nextTile);
 }
 
 drawSquare(x, y, color, gameService = this.gameService, ctx = this.ctx): void{
@@ -254,7 +280,14 @@ control(event): void{
             this.gameService.tile.moveDown(this.drawSquare, this.randomTile, this.drawBoard, this.gameStatus);
         }
         this.gameService.tile.moveDown(this.drawSquare, this.randomTile, this.drawBoard, this.gameStatus);
-        this.gameService.tile.moveDown(this.drawSquare, this.randomTile, this.drawBoard, this.gameStatus);   
+        this.gameService.tile.moveDown(this.drawSquare, this.randomTile, this.drawBoard, this.gameStatus);
+    }
+    else if(event.keyCode == 78){
+        if(this.gameService.skipBarStatus>=100){
+        this.gameService.skipBarStatus = 0;
+        this.switchBlocks();
+        this.drawBoard();
+        }
     }
 
 }
