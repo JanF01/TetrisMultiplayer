@@ -1,0 +1,60 @@
+.upper{
+    color:white;
+    display:flex;
+    align-items: center;
+    width:100%;
+    font-family:'Manrope',sans-serif;
+    h2{
+        font-size:1.23em;
+        font-weight:normal;
+        }
+    .nick{
+        width:19%;
+        display:flex;
+        align-items:center;
+        img{
+            width: 1.6em;
+            height: 1.6em;
+            margin-left:1em;
+        }
+    }
+    .rank{
+      width:50%;
+      display:flex;
+      align-items:center;
+      img{
+          height:3em;
+          margin-left:1em;
+      }
+    }
+    .play{
+        font-family:'Manrope';
+        font-weight:800;
+        font-size:1.35em;
+        padding:0.15em 2.7em 0.15em 2.7em;
+        letter-spacing:0.4em;
+        border:none;
+        -ms-border-radius:3em;
+        -webkit-border-radius:3em;
+        -moz-border-radius:3em;
+        border-radius:3em;
+        transition:0.4s all;
+        color:black;
+        border:0.15em solid white;
+        &:hover{
+            cursor:pointer;
+          background:rgb(0, 0, 0);
+          color:white;
+        }
+    }
+    img.settings{
+        width: 2.1em;
+        height: 2.1em;
+        margin-left:10%;
+        transition:all 1s;
+        &:hover{
+            transform:rotate(260deg);
+            cursor:pointer;
+        }
+    }
+}

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faKey,faHatWizard } from '@fortawesome/free-solid-svg-icons'
+import { faKey,faHatWizard, faFeatherAlt, faEnvelope } from '@fortawesome/free-solid-svg-icons'
 import { VerificationService } from "../verification.service";
 import { Router } from '@angular/router'
 import { FormControl, Validators } from '@angular/forms';
@@ -17,6 +17,8 @@ export class RegisterComponent implements OnInit {
 
   faKey = faKey
   faHatWizard = faHatWizard
+  faFeather = faFeatherAlt
+  faEnvelope = faEnvelope
   login: string = ''
   password: string = ''
   email: string = ''

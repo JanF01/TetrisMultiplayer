@@ -5,18 +5,12 @@
     justify-content:center;
 }
 
-main{
-    padding-bottom:15vh;
-    width:100%;
-    min-height:85vh;
-    @include flex();
-    flex-direction:column;
-    background:radial-gradient(circle,rgb(1, 51, 116) 40%,rgba(2, 43, 97, 0.781));
-    font-family: 'Manrope', sans-serif;
+
   h1,h2{
       font-size:4.3em;
       color:rgb(255, 255, 255);
       font-weight:800;
+      text-align:center;
       margin:0;
       margin-top:-0.5em;
       -moz-user-select: none; 
@@ -69,7 +63,7 @@ main{
     align-items:flex-end;
     flex-direction:row;
 }
-  }
+ 
 
   @media only screen and (max-width: 1000px){
       main{

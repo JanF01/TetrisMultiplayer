@@ -1,3 +1,20 @@
+main{
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:radial-gradient(circle,rgb(1, 51, 116) 40%,rgba(2, 43, 97, 0.781));
+    min-height:100vh;
+    width:100%;
+    font-family: 'Manrope', sans-serif;
+    flex-direction:column;
+
+    router-outlet{
+        width:100%;
+    }
+}
+
+
 nav{
     position:fixed;
     top:0;
@@ -42,3 +59,4 @@ outline:none;
         }
     }
 }
+

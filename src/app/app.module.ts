@@ -16,12 +16,19 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ButtonModule } from '@syncfusion/ej2-angular-buttons';
 import { enableRipple } from '@syncfusion/ej2-base';
 
+import { CookieService } from 'ngx-cookie-service';
+
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { GameService } from './game.service';
 import { VerificationService } from './verification.service';
 import { GuardService } from './guard.service';
 import { PanelComponent } from './panel/panel.component';
+import { PanelUpperComponent } from './panel/panel-upper/panel-upper.component';
+import { AbilitiesComponent } from './panel/abilities/abilities.component';
+import { ShopComponent } from './panel/shop/shop.component';
+import { LevelBarComponent } from './panel/level-bar/level-bar.component';
+import { AbilityComponent } from './panel/shop/ability/ability.component';
 
 
 enableRipple(true);
@@ -43,7 +50,12 @@ const appRoutes: Routes = [
     TetrisComponent,
     LoginComponent,
     RegisterComponent,
-    PanelComponent
+    PanelComponent,
+    PanelUpperComponent,
+    AbilitiesComponent,
+    ShopComponent,
+    LevelBarComponent,
+    AbilityComponent
   ],
   imports: [
     RouterModule.forRoot(
@@ -57,7 +69,7 @@ const appRoutes: Routes = [
     FontAwesomeModule,
     ReactiveFormsModule
   ],
-  providers: [GameService, VerificationService, GuardService],
+  providers: [GameService, VerificationService, GuardService, CookieService],
   bootstrap: [AppComponent, WelcomeComponent, LoginComponent, RegisterComponent, TetrisComponent]
 })
 export class AppModule { }

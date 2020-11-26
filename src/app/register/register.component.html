@@ -1,4 +1,4 @@
-<main>
+
     <section>
         <h2>Create a new account</h2>
     <div class="e-input-group">
@@ -7,13 +7,12 @@
     </div>
     <div class="e-input-group">
         <input class="e-input" placeholder="Email" type="text" required [(ngModel)]="this.email" [formControl]="emailValidator">
-        <span class="e-input-group-icon"><fa-icon [icon]="faKey"></fa-icon></span>
+        <span class="e-input-group-icon"><fa-icon [icon]="faEnvelope"></fa-icon></span>
     
         </div>
      <div class="e-input-group">
             <input class="e-input" placeholder="Your nickname" type="text" required [(ngModel)]="this.nickname">
-            <span class="e-input-group-icon"><fa-icon [icon]="faKey"></fa-icon></span>
-        
+            <span class="e-input-group-icon"><fa-icon [icon]="faFeather"></fa-icon></span>
         </div>
     <div class="e-input-group">
         <input class="e-input" placeholder="Password" type="password" required [(ngModel)]="this.password">
@@ -32,6 +31,4 @@
        </div>
        </div>
     </section>
-    
-    </main>
     

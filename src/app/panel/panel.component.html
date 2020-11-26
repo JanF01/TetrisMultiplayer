@@ -1,1 +1,48 @@
-<p>panel works!</p>
+<section>
+    <app-panel-upper (openSettings)="openSettings()" nickname="{{user.nickname}}" rank="{{user.rank}}"></app-panel-upper>
+    <app-abilities></app-abilities>
+    <app-shop level="{{user.level}}"></app-shop>
+    <app-level-bar level="{{user.level}}" experience="{{experiencePerc}}"></app-level-bar>
+    <div class="money">
+    <img src="assets/money-bag.png" class="bag">
+    <div class="amount">
+        {{user.money}}<img src="assets/money.png">
+    </div>
+    </div>
+</section>
+
+<div class="settings" *ngIf="settingsOpen">
+    <h1>KEYBOARD SETTINGS</h1>
+    <div class="option">
+        <h2>SKIP:</h2><h2><u>N</u></h2>
+    </div>
+    <div class="option">
+        <h2>SAVE AND SKIP:</h2><h2><u>M</u></h2>
+    </div>
+    <div class="option">
+        <h2>DESTROY:</h2><h2><u>B</u></h2>
+    </div>
+    <h1>COLORS SETTINGS</h1>
+    <div class="option">
+  
+            <h2>BACKGROUND:</h2>
+            <h2>
+            <select [(ngModel)]="color">
+                <option value="base">Base</option>
+                <option value="speed">Speed</option>
+                <option value="rainbow">Rainbow</option>
+                <option value="still">Still</option>
+            </select>
+        </h2>
+    </div>
+    <div class="option">
+  
+        <h2>THEME:</h2>
+        <h2>
+        <select [(ngModel)]="theme">
+            <option value="white">White</option>
+            <option value="colorful">Colorful</option>
+        </select>
+    </h2>
+</div>
+</div>

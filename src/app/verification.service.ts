@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { User } from './models/User';
+import { UserService } from './user.service';
 
 export interface UserDetails {
 
@@ -40,7 +41,7 @@ export class VerificationService {
   public userDetails: User = {} as any;
 
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router, private userService: UserService) { }
 
   private saveToken(token: string): void{
       window.localStorage.setItem("userToken", token);
@@ -62,7 +63,8 @@ export class VerificationService {
       let user = JSON.parse(payload);
 
       this.userDetails = new User(user.login,user.nickname,user.rank,user.level,user.experience,user.money);
-      
+      this.userService.saveDetails(this.userDetails);
+
       return user;
     }
     else{

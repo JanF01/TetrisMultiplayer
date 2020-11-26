@@ -31,9 +31,6 @@ SET time_zone = "+00:00";
 CREATE TABLE `abilities` (
   `id` int(11) NOT NULL,
   `name` varchar(25) NOT NULL,
-  `shortcut` varchar(1) NOT NULL,
-  `abilitiescol` varchar(45) NOT NULL,
-  `lvl` int(11) NOT NULL,
   `unlock_level` int(11) NOT NULL,
   `price` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -120,7 +117,8 @@ CREATE TABLE `user` (
 CREATE TABLE `user_has_abilities` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `abilities_id` int(11) NOT NULL
+  `abilities_id` int(11) NOT NULL,
+  `amount` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -283,6 +281,12 @@ ALTER TABLE `user_has_abilities`
 ALTER TABLE `user_has_game`
   ADD CONSTRAINT `user_has_game_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
   ADD CONSTRAINT `user_has_game_ibfk_2` FOREIGN KEY (`game_id`) REFERENCES `game` (`id`);
+
+
+
+INSERT INTO `abilities` (`id`, `name`, `unlock_level`, `price`) VALUES (NULL, 'SKIP', '3', '300'), (NULL, 'SAVE AND SKIP', '7', '500'), (NULL, 'DESTROY', '12', '700');
+
+
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
