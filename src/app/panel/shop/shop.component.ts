@@ -28,25 +28,9 @@ export class ShopComponent implements OnInit {
           this.abilities = res;
     });
 
-    if(this.cookies.check("skip")){
-      this.cookie.keyOne = this.cookies.get("skip");
-    }else{
-      this.cookies.set("skip","N",365);
-    }
-
-    if(this.cookies.check("save")){
-      this.cookie.keyThree = this.cookies.get("save");
-    }else{
-      this.cookies.set("save","M",365);
-    }
-
-    if(this.cookies.check("destroy")){
-      this.cookie.keyThree = this.cookies.get("destroy");
-    }else{
-      this.cookies.set("destroy","B",365);
-    }
 
 
   }
+
 
 }
