@@ -4,6 +4,7 @@ import { User } from './models/User';
 import { Router } from '@angular/router'
 import { CookieService } from 'ngx-cookie-service';
 import { UserService } from './user.service';
+import { AdministrationService } from './administration.service';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,7 @@ import { UserService } from './user.service';
 })
 export class AppComponent implements OnInit{
   title = 'multiTetris';
-  constructor(private guard: GuardService, private router: Router, private cookies: CookieService, private user: UserService){
+  constructor(private guard: GuardService, private router: Router, private cookies: CookieService, private user: UserService, private admin: AdministrationService){
 
   }
   ngOnInit(){
@@ -27,7 +28,7 @@ export class AppComponent implements OnInit{
          this.router.navigateByUrl("/panel");
 
         this.user.refreshCookies();
-
+        this.admin.getScores().subscribe();
     }
   }
 

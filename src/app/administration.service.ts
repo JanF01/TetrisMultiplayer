@@ -26,4 +26,15 @@ export class AdministrationService {
 
      return request;
   }
+
+  getScores(): Observable<any>{
+      const base = this.http.get(this.baseUrl+"/get_scores");
+
+     const request = base.pipe(
+       map((res)=>{
+           console.log(res);
+       })
+     )
+     return request;
+  }
 }
