@@ -1,7 +1,7 @@
 <?php
 
 $dbhost = "localhost";
-$dbname = "tetris";
+$dbname = "multitetris";
 $dbuser = "root";
 $dbpassword = "";
 
