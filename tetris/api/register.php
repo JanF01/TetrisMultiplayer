@@ -73,6 +73,8 @@
              "last_login" => $last_login
           ));
 
+          if($result){
+
          $id = $db_connection->lastInsertId();
          
           $user = new User(
@@ -90,7 +92,7 @@
  
           $response = array('token' => $jwt);
           echo json_encode($response);
-
+          }
           
        }
     }catch(PDOException $e){
