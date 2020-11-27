@@ -4,7 +4,7 @@ export class User{
   nickname: string
   rank: string
   level: number
-  experience: string
+  experience: number
   money: number
 
   constructor(l,n,r,lvl,exp,m){

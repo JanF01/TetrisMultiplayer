@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { User } from './models/User';
+import { UserService } from './user.service';
 
 export interface UserDetails {
 
@@ -40,7 +41,7 @@ export class VerificationService {
   public userDetails: User = {} as any;
 
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router, private userService: UserService) { }
 
   private saveToken(token: string): void{
       window.localStorage.setItem("userToken", token);
@@ -62,7 +63,8 @@ export class VerificationService {
       let user = JSON.parse(payload);
 
       this.userDetails = new User(user.login,user.nickname,user.rank,user.level,user.experience,user.money);
-      
+      this.userService.saveDetails(this.userDetails);
+
       return user;
     }
     else{
@@ -71,20 +73,18 @@ export class VerificationService {
   }
 
 
-  public register(login: string, pass: string): Observable<any>{
+  public register(login: string, pass: string, email: string, nickname: string): Observable<any>{
     const base = this.http.post(`${this.baseUrl}/register`,{
-      login: login,
-      pass: pass
+      username: login,
+      pass: pass,
+      email: email,
+      nickname: nickname
     })
     
     const request = base.pipe(
-      map((data: string) =>{
-        if(data=="Nazwa użytkownika zajęta"){
-          return "Nazwa użytkownika zajęta";
-        }else if(data=="Błąd zapytania"){
-          return "Wystąpił błąd";
-        }else{
-          this.saveToken(data)
+      map((data: any) =>{
+        if(data.token){
+          this.saveToken(data.token)
         }
         return data;
       })
@@ -96,18 +96,14 @@ export class VerificationService {
 
   public login(login: string, pass: string ): Observable<any>{
     const base = this.http.post(`${this.baseUrl}/login`,{
-      login: login,
+      username: login,
       pass: pass
     })
 
     const request = base.pipe(
-      map((data: string) => {
-        if(data=="Brak użytkownika"){
-          return "Brak użytkownika";
-        }else if(data=="Błąd zapytania"){
-          return "Wystąpił błąd";
-        }else{
-          this.saveToken(data)
+      map((data: any) => {
+         if(data.token){
+          this.saveToken(data.token)
         }
         return data;
       }

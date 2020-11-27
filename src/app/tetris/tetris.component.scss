@@ -1,39 +1,147 @@
+
+@mixin borderRadius($r){
+    -moz-border-radius:$r;
+    -webkit-border-radius:$r;
+    -ms-border-radius:$r;
+    border-radius:$r;
+}
+
 main{
     display: flex;
     align-items: center;
     justify-content: center;
-    background: radial-gradient(circle, rgb(1, 51, 116) 40%, rgba(2, 43, 97, 0.781));
     min-height: 100vh;
     width: 100%;
-}
-.container{
-    margin-top: 5vh;
-    height: 600px;
-    display: flex;
-}
-.stats{
-    margin-top: 5vh;
-    height: 600px;
-    width: 200px;
-    display: inline-block;
+    img{
+        width:45%;
+        position:absolute;
 
+    }
+    button{
+        font-family:'Manrope';
+        font-size:1.15em;
+        width:10em;
+        padding:0.6em;
+        background:rgb(72, 7, 133);
+        border:none;
+        border-bottom: solid 0.34em rgb(56, 4, 105);
+        box-shadow:0em 0.1em 0.3em -0.1em rgb(71, 3, 54);
+        color:white;
+        letter-spacing:0.13em;
+        @include borderRadius(0.3em);
+        transition:0.13s all;
+        &:hover{
+            cursor:pointer;
+            transform:scale(0.94);      
+          }
+    
+          margin-left:18%;
+          margin-top:11vh;
+          z-index:10;
+       
+    }
+    .container{
+        margin-top: 5vh;
+        height: 600px;
+        display: none;
+        position:relative;
+        h2{
+            position:relative;
+            left:90px;
+            top:-14px;
+            font-family:'Manrope',sans-serif;
+            color:white;
+            font-size:1em;
+            font-weight:normal;
+            letter-spacing:0.04em;
+        }
+        .nextTile{
+            width: 160px;
+            height: 210px;
+            color:white;
+
+        }
+        .gameStatus{
+            position: absolute;
+            left:250px;
+            top:0;
+            width: 302px;
+            height: 600px;
+            color:white;
+        }
+        .tetris{
+            color:white;
+            display: flex;
+            border: 2px solid white;
+        }
+    }
+    .stats{
+        margin-top: 5vh;
+        height: 600px;
+        width: 200px;
+        display: none;
+        position:relative;
+        .score, .lines, .level, .scoreboard{
+            color: white;
+            font-family: 'Manrope', cursive;
+            white-space: pre-wrap;
+            margin: 1rem;
+        }
+        .scoreboard{
+            border-bottom: 2px solid white;
+        }
+        .skipBar{
+            width:0px;
+            border: none;
+            background: rgba(21, 93, 201, 0.475);
+            height:15px;
+            position:absolute;
+            bottom:-30px;
+            left:-303px;
+            box-shadow:none;
+            transition:width 1.5s, background 0.4s, box-shadow 0.4s;
+        }
+    }
 }
-.gameStatus{
-    position: absolute;
-    width: 302px;
-    height: 600px;
+
+@media only screen and (max-width:1470px){
+    main{
+
+        img{
+            width:50%;
+            position:absolute;
+    
+        }
+        button{
+         font-size:1em;
+              margin-left:20%;
+              margin-top:11vh;
+        }
+    }
 }
-.tetris{
-    display: flex;
-    border: 2px solid white;
+
+@media only screen and (max-width:1350px){
+    main{
+
+        img{
+            width:60%;
+            position:absolute;
+    
+        }
+        button{
+            font-size:1em;
+                 margin-left:0%;
+                 margin-top:79vh;
+           }
+    }
 }
-.score, .lines, .level, .scoreboard{
-    color: white;
-    font-family: 'Manrope', sans-serif;
-    font-size: 1.2em;
-    white-space: pre-wrap;
-    margin: 1rem;
-}
-.scoreboard{
-    border-bottom: 2px solid white;
+@media only screen and (max-width:1250px){
+    main{
+
+        img{
+            width:90%;
+            position:absolute;
+    
+        }
+    }
 }

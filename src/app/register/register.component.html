@@ -1,4 +1,4 @@
-<main>
+
     <section>
         <h2>Create a new account</h2>
     <div class="e-input-group">
@@ -6,9 +6,13 @@
     <span class="e-input-group-icon"><fa-icon [icon]="faHatWizard"></fa-icon></span>
     </div>
     <div class="e-input-group">
-        <input class="e-input" placeholder="Email" type="text" required [(ngModel)]="this.email">
-        <span class="e-input-group-icon"><fa-icon [icon]="faKey"></fa-icon></span>
+        <input class="e-input" placeholder="Email" type="text" required [(ngModel)]="this.email" [formControl]="emailValidator">
+        <span class="e-input-group-icon"><fa-icon [icon]="faEnvelope"></fa-icon></span>
     
+        </div>
+     <div class="e-input-group">
+            <input class="e-input" placeholder="Your nickname" type="text" required [(ngModel)]="this.nickname">
+            <span class="e-input-group-icon"><fa-icon [icon]="faFeather"></fa-icon></span>
         </div>
     <div class="e-input-group">
         <input class="e-input" placeholder="Password" type="password" required [(ngModel)]="this.password">
@@ -27,7 +31,10 @@
        </div>
        </div>
     </section>
+<<<<<<< HEAD
     
     </main>
     
+=======
+>>>>>>> 3c008f54d9de37bf9e05f4688b2b6543576064c9
     

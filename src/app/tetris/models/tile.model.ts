@@ -1,6 +1,7 @@
 import {block} from './block.model';
 import {TetrisComponent} from '../tetris.component';
 import { GameService } from 'src/app/game.service';
+import { Router } from '@angular/router';
 
 export class Tile{
     tetromino: Array<Array<number>>
@@ -11,11 +12,15 @@ export class Tile{
     x: number
     private gameService: GameService
     ctx: CanvasRenderingContext2D
-    constructor(tetromino, color, ctx, gameService){
+    ctx2: CanvasRenderingContext2D
+    router: Router;
+    constructor(tetromino, color, ctx,ctx2, gameService, router){
         this.gameService = gameService;
         this.tetromino = tetromino
         this.color = color
         this.ctx = ctx
+        this.ctx2 = ctx2
+        this.router = router;
 
         this.tetrominoN = 0;
         this.activeTetromino = this.tetromino[this.tetrominoN]
@@ -78,7 +83,9 @@ export class Tile{
         }
         else{
               this.lock(dS,dB,gS);
-              this.gameService.tile = rT(this.gameService,this.ctx);
+              this.gameService.tile = this.gameService.nextTile;
+              this.gameService.nextTile = rT(this.gameService,this.ctx,this.ctx2, this.router);
+              this.gameService.newTileCreated();
         }
     }
 
@@ -159,7 +166,10 @@ export class Tile{
                 }
                 if(this.y + r < 0){
                     this.gameService.flags.gameOver = true;
-                    gS();
+                    gS(this.gameService,this.ctx2,this.router);
+                    setTimeout(()=>{
+                        this.router.navigateByUrl("/login");
+                    },1000);
                     break;
                 }
                 this.gameService.board[this.y+r][this.x+c] = this.color;

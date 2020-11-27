@@ -1,0 +1,19 @@
+section{
+    margin-top:-4vh;
+    width:70%;
+    margin-left:15%;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    app-ability{
+        width:calc(100% / 3);
+    }
+}
+
+@media only screen and (max-width:1800px){
+    section{
+        margin-top:-15vh;
+        font-size:0.9em;
+    }
+}

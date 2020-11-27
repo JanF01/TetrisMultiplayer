@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { VerificationService } from './verification.service';
-import { User } from './models/User';
 
 @Injectable()
 export class GuardService {
@@ -29,10 +28,5 @@ export class GuardService {
     location.reload();
   }
 
-  public getUserData(): User{
-    if(this.logged){
-     return this.verify.userDetails;
-    }
-  }
 
 }

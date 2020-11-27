@@ -1,0 +1,14 @@
+<section>
+    <div class="ability">
+        <div class="title">
+            <h2>{{title}}</h2>
+            <div class="key">{{key}}</div>
+        </div>
+        <img src="assets/{{image}}.png" class="look">
+        <button class="buy" *ngIf="level>=unlock">BUY</button>
+        <p *ngIf="level<unlock">Unlocks at level {{unlock}}</p>
+        <div class="price">
+            {{price}}<img src="assets/money.png">
+        </div>
+    </div>
+</section>

@@ -1,0 +1,26 @@
+section{
+    width:24%;
+    display:flex;
+    flex-direction:column;
+    margin-top:5vh;
+    h2{
+        font-size:1.24em;
+        color:white;
+        font-weight:400;
+        font-family:'Manrope',sans-serif;
+    }
+
+    .ability{
+        display:flex;
+        align-items:center;
+        color:white;
+        margin-top:2vh;
+        p{
+            font-size:1.2em;
+            margin-left:1.4em;
+        }
+        img{
+            width:4em;
+        }
+    }
+}
