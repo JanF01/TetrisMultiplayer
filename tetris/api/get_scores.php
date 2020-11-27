@@ -2,12 +2,20 @@
 
     require_once("../connections/connection.php");
 
-    $sql = 'SELECT u.id, u.nickname, u.rank, u.level, ug.score FROM user u INNER JOIN user_has_game ON u.id=ug.user_id GROUP BY u.id'
+    $sql = 'SELECT u.nickname, u.rank, u.level, r.performance, r.placement FROM user u INNER JOIN ranking_position ON u.id=r.user_id ORDER BY r.placement';
     
     try{
         $stmt = $db_connection->prepare($sql);
         if($stmt){
-            $result = $stmt->execute(array())
+            $result = $stmt->execute(array());
+
+            if($result){
+                $rows = $stmt->fetchAll();
+                return json_encode($rows);
+            }
         }
+    }
+    catch(PDOExeption $e){
+        
     }
 ?>
