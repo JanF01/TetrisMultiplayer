@@ -78,6 +78,17 @@ section{
             letter-spacing:0.06em;
             width:40%;
             text-align:right;
+            cursor:pointer;
+            transition:all 0.2s;
+            &:hover{
+                transition:scale(1.1);
+            }
+            &.changing{
+                font-weight:800;
+                transition:scale(1.15);
+                border:0.1em black solid;
+                text-decoration:underline;
+            }
         
             &:nth-child(2){
                 width:60%;
@@ -98,6 +109,19 @@ section{
             }
         }
       
+    }
+    fa-icon{
+        position:relative;
+        z-index:11;
+        font-size:2em;
+        left:43%;
+        bottom:85%;
+        transition:0.2s all;
+        &:hover{
+            cursor:pointer;
+            transform:scale(0.92);
+        }
+        
     }
 }
 
