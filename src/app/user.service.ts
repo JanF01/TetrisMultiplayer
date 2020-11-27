@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 import { GuardService } from './guard.service';
 import { User } from './models/User';
 
@@ -43,7 +44,15 @@ export class UserService {
     7560000
   ]
 
-  constructor() { }
+  cookie = {
+    keyOne: 'N',
+    keyTwo: 'M',
+    keyThree: 'B',
+    background: 'Base',
+    theme: 'White'
+  }
+
+  constructor(private cookies: CookieService) { }
 
 
   checkIfLogged(){
@@ -58,6 +67,26 @@ export class UserService {
   getDetails(){
     if(this.checkIfLogged()){
       return this.userDetails;
+    }
+  }
+
+  refreshCookies(){
+    if(this.cookies.check("skip")){
+      this.cookie.keyOne = this.cookies.get("skip");
+    }else{
+      this.cookies.set("skip","N",365);
+    }
+
+    if(this.cookies.check("save")){
+      this.cookie.keyTwo = this.cookies.get("save");
+    }else{
+      this.cookies.set("save","M",365);
+    }
+
+    if(this.cookies.check("destroy")){
+      this.cookie.keyThree = this.cookies.get("destroy");
+    }else{
+      this.cookies.set("destroy","B",365);
     }
   }
 

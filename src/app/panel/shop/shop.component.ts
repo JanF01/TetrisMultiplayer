@@ -15,8 +15,11 @@ export class ShopComponent implements OnInit {
   cookie = {
     keyOne: 'N',
     keyTwo: 'M',
-    keyThree: 'B'
+    keyThree: 'B',
+    background: 'Base',
+    theme: 'White'
   }
+
 
   constructor(private admin: AdministrationService, private cookies: CookieService) { }
 

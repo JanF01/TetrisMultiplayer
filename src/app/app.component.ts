@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { GuardService } from './guard.service';
 import { User } from './models/User';
 import { Router } from '@angular/router'
+import { CookieService } from 'ngx-cookie-service';
+import { UserService } from './user.service';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +12,7 @@ import { Router } from '@angular/router'
 })
 export class AppComponent implements OnInit{
   title = 'multiTetris';
-  constructor(private guard: GuardService, private router: Router){
+  constructor(private guard: GuardService, private router: Router, private cookies: CookieService, private user: UserService){
 
   }
   ngOnInit(){
@@ -23,6 +25,8 @@ export class AppComponent implements OnInit{
     if(this.guard.loggedIn()){
  
          this.router.navigateByUrl("/panel");
+
+        this.user.refreshCookies();
 
     }
   }
