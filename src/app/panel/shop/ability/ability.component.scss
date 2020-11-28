@@ -67,3 +67,24 @@ section{
 
     }
 }
+
+
+.colorful{
+    background: linear-gradient(to right, rgb(78, 255, 72), rgb(255, 116, 116),  rgb(255, 253, 116),  rgb(128, 255, 249));
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+    font-weight:800;
+    letter-spacing:0.05em;
+}
+.colorfulBlock{
+   border-color:rgb(167, 60, 255) !important;
+   color:rgb(255, 255, 255);
+}
+.colorfulButton{
+    background: rgb(17, 216, 223);
+    &:hover{
+        background:violet !important;
+        color:black !important;
+    }
+}

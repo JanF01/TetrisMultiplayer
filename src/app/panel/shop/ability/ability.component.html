@@ -1,13 +1,13 @@
 <section>
     <div class="ability">
         <div class="title">
-            <h2>{{title}}</h2>
-            <div class="key">{{key}}</div>
+            <h2 [ngClass]="{'colorful': theme=='Colorful'}">{{title}}</h2>
+            <div class="key" [ngClass]="{'colorfulBlock': theme=='Colorful'}">{{key}}</div>
         </div>
-        <img src="assets/{{image}}.png" class="look">
-        <button class="buy" *ngIf="level>=unlock">BUY</button>
-        <p *ngIf="level<unlock">Unlocks at level {{unlock}}</p>
-        <div class="price">
+        <img src="assets/{{image}}{{theme}}.png" class="look">
+        <button class="buy" (click)="buyAbility()" *ngIf="(level-unlock)>=0" [ngClass]="{'colorfulButton': theme=='Colorful'}">BUY</button>
+        <p *ngIf="(level-unlock)<0" [ngClass]="{'colorful': theme=='Colorful'}">Unlocks at level {{unlock}}</p>
+        <div class="price" [ngClass]="{'colorful': theme=='Colorful'}">
             {{price}}<img src="assets/money.png">
         </div>
     </div>

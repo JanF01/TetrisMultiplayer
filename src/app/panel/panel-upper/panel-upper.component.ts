@@ -9,6 +9,7 @@ export class PanelUpperComponent implements OnInit {
 
   @Input() nickname: string
   @Input() rank: string
+  @Input() theme: string
 
   @Output() openSettings: EventEmitter<any> = new EventEmitter<any>();
 

@@ -125,6 +125,15 @@ section{
     }
 }
 
+.colorful{
+    background: linear-gradient(to right, rgb(78, 255, 72), rgb(255, 116, 116),  rgb(255, 253, 116),  rgb(128, 255, 249));
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+    font-weight:800;
+    letter-spacing:0.05em;
+}
+
 @media only screen and (max-width:1800px){
     section{
         width:76vw;

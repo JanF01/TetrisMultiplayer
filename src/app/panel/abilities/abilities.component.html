@@ -1,16 +1,16 @@
 <section>
-    <h2>Abilities:</h2>
+    <h2 [ngClass]="{'colorful': cookie.theme=='Colorful'}">Abilities:</h2>
     <div class="ability">
-        <img src="assets/fast-forward.png">
-    <p>0x</p>
+        <img src="assets/fast-forward{{cookie.theme}}.png">
+    <p [ngClass]="{'colorful': cookie.theme=='Colorful'}">{{skip}}x</p>
     </div>
     <div class="ability">
-        <img src="assets/save.png">
-        <p>0x</p>
+        <img src="assets/save{{cookie.theme}}.png">
+        <p [ngClass]="{'colorful': cookie.theme=='Colorful'}">{{save}}x</p>
         </div>
         <div class="ability">
-            <img src="assets/bomb.png">
-            <p>0x</p>
+            <img src="assets/bomb{{cookie.theme}}.png">
+            <p [ngClass]="{'colorful': cookie.theme=='Colorful'}">{{destroy}}x</p>
             </div>
 </section>
 

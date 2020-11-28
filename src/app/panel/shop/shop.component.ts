@@ -9,16 +9,14 @@ import { AdministrationService } from 'src/app/administration.service';
 })
 export class ShopComponent implements OnInit {
 
-  @Input() level: string
+  @Input() level: number
+  @Input() keyOne: string
+  @Input() keyTwo: string
+  @Input() keyThree: string
+  @Input() theme: string
 
-  abilities: Array<any>
-  cookie = {
-    keyOne: 'N',
-    keyTwo: 'M',
-    keyThree: 'B',
-    background: 'Base',
-    theme: 'White'
-  }
+  abilities: Array<any> = [] as any;
+
 
 
   constructor(private admin: AdministrationService, private cookies: CookieService) { }

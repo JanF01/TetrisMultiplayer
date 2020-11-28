@@ -62,7 +62,7 @@ export class VerificationService {
 
       let user = JSON.parse(payload);
 
-      this.userDetails = new User(user.login,user.nickname,user.rank,user.level,user.experience,user.money);
+      this.userDetails = new User(user.id, user.login,user.nickname,user.rank,user.level,user.experience,user.money);
       this.userService.saveDetails(this.userDetails);
 
       return user;
