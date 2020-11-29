@@ -28,7 +28,6 @@ export class AppComponent implements OnInit{
          this.router.navigateByUrl("/panel");
 
         this.user.refreshCookies();
-        this.admin.getScores().subscribe();
     }
   }
 

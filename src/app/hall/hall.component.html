@@ -1,0 +1,23 @@
+<h1>Hall of Fame</h1>
+<div>
+    <table>
+        <tr>
+            <td>Place</td>
+            <td>Name</td>
+            <td>Rank</td>
+            <td>Level</td>
+            <td>Performance</td>
+        </tr>
+        <tr *ngFor="let position of scores">
+            <td><div *ngIf="position.placement == 1 || position.placement == 2 || position.placement == 3">
+                <img src="assets/trophy{{position.placement}}.png">
+                </div>
+                {{position.placement}}
+            </td>
+            <td>{{position.nickname}}</td>
+            <td><img src="assets/{{position.rank}}.png"></td>
+            <td>{{position.level}}</td>
+            <td>{{position.performance}}</td>
+        </tr>
+    </table>
+</div>
