@@ -1,11 +1,11 @@
 <section>
-    <app-panel-upper (openSettings)="switchSettings()" nickname="{{user.nickname}}" rank="{{user.rank}}"></app-panel-upper>
-    <app-abilities></app-abilities>
-    <app-shop level="{{user.level}}"></app-shop>
-    <app-level-bar level="{{user.level}}" experience="{{experiencePerc}}"></app-level-bar>
+    <app-panel-upper theme="{{cookie.theme}}" (openSettings)="switchSettings()" nickname="{{user.nickname}}" rank="{{user.rank}}"></app-panel-upper>
+    <app-abilities skip="{{userAbilities.skip}}" save="{{userAbilities.save}}" destroy="{{userAbilities.destroy}}"></app-abilities>
+    <app-shop level="{{user.level}}" keyOne="{{cookie.keyOne}}" keyTwo="{{cookie.keyTwo}}" keyThree="{{cookie.keyThree}}" theme="{{cookie.theme}}"></app-shop>
+    <app-level-bar theme="{{cookie.theme}}" level="{{user.level}}" experience="{{experiencePerc}}"></app-level-bar>
     <div class="money">
-    <img src="assets/money-bag.png" class="bag">
-    <div class="amount">
+    <img src="assets/money-bag{{cookie.theme}}.png" class="bag">
+    <div class="amount" [ngClass]="{'colorful': cookie.theme=='Colorful'}">
         {{user.money}}<img src="assets/money.png">
     </div>
     </div>
@@ -27,11 +27,11 @@
   
             <h2>BACKGROUND:</h2>
             <h2>
-            <select [(ngModel)]="color">
-                <option value="base">Base</option>
-                <option value="speed">Speed</option>
-                <option value="rainbow">Rainbow</option>
-                <option value="still">Still</option>
+            <select [(ngModel)]="color" (change)="setBackground()">
+                <option value="Base">Base</option>
+                <option value="Speed">Speed</option>
+                <option value="Rainbow">Rainbow</option>
+                <option value="Still">Still</option>
             </select>
         </h2>
     </div>
@@ -39,9 +39,9 @@
   
         <h2>THEME:</h2>
         <h2>
-        <select [(ngModel)]="theme">
-            <option value="white">White</option>
-            <option value="colorful">Colorful</option>
+        <select [(ngModel)]="theme" (change)="setTheme()">
+            <option value="White">White</option>
+            <option value="Colorful">Colorful</option>
         </select>
     </h2>
 </div>

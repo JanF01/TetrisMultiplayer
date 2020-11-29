@@ -24,3 +24,12 @@ section{
         }
     }
 }
+
+.colorful{
+    background: linear-gradient(to right, rgb(147, 255, 143), rgb(255, 169, 169),  rgb(255, 254, 174),  rgb(188, 255, 252));
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+    font-weight:800 !important;
+    letter-spacing:0.1em;
+}

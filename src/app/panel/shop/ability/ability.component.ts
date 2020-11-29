@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { UserService } from 'src/app/user.service';
 
 @Component({
   selector: 'app-ability',
@@ -10,14 +11,29 @@ export class AbilityComponent implements OnInit {
   @Input() title: string
   @Input() key: string
   @Input() image: string
+  @Input() theme: string
   @Input() price: number
   @Input() unlock: number
   @Input() level: number
 
+  alert: string = '';
 
-  constructor() { }
+
+  constructor(private user: UserService) { }
 
   ngOnInit(): void {
+  }
+
+
+  buyAbility(){
+ 
+    if(this.user.checkIfHasMoney(this.price)){
+         this.user.buyAbility(this.title, this.price).subscribe((res)=>{
+            this.alert = (res=="Sukces") ? "The ability has been bough" : "The buying process malfunctioned";
+         })
+    }else{
+      this.alert = "Not enough $$$";
+    }
   }
 
 }

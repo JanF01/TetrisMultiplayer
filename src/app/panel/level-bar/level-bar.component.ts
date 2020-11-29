@@ -9,6 +9,7 @@ export class LevelBarComponent implements OnInit {
 
   @Input() level: number;
   @Input() experience: number;
+  @Input() theme: string;
 
   constructor() { }
 
