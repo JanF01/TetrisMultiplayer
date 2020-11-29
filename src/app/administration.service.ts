@@ -32,7 +32,7 @@ export class AdministrationService {
 
      const request = base.pipe(
        map((res)=>{
-           console.log(res);
+           return res;
        })
      )
      return request;

@@ -29,6 +29,7 @@ import { AbilitiesComponent } from './panel/abilities/abilities.component';
 import { ShopComponent } from './panel/shop/shop.component';
 import { LevelBarComponent } from './panel/level-bar/level-bar.component';
 import { AbilityComponent } from './panel/shop/ability/ability.component';
+import { HallComponent } from './hall/hall.component';
 
 
 enableRipple(true);
@@ -39,7 +40,8 @@ const appRoutes: Routes = [
   {path: 'panel', component: PanelComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'tetris', component: TetrisComponent}
+  {path: 'tetris', component: TetrisComponent},
+  {path: 'hall', component: HallComponent}
 ]
 
 
@@ -55,7 +57,8 @@ const appRoutes: Routes = [
     AbilitiesComponent,
     ShopComponent,
     LevelBarComponent,
-    AbilityComponent
+    AbilityComponent,
+    HallComponent
   ],
   imports: [
     RouterModule.forRoot(

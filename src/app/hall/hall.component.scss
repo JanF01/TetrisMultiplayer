@@ -1,0 +1,46 @@
+h1{
+    margin: 1.5em;
+    text-align: center;
+    color: white;
+}
+div{
+    color: white;
+    // font-size: 20px;
+}
+table{
+    font-size: 22px;
+    width: 70vw;
+    margin: 1.5em;
+    border-collapse: collapse;
+    border-style: hidden;
+}
+table td{
+    border: 3px solid white;
+}
+img{
+    height: 30px;
+}
+td{
+    text-align: center;
+    padding: 1em;
+}
+
+@media only screen and (max-width: 1200px){
+    table{
+        font-size: 20px;
+        width: 85vw;
+    }
+    td{
+        padding: 0.8em;
+    }
+}
+
+@media only screen and (max-width: 800px){
+    table{
+        font-size: 18px;
+        width: 90vw;
+    }
+    td{
+        padding: 0.6em;
+    }
+}
