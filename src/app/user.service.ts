@@ -105,6 +105,7 @@ export class UserService {
     }else{
       this.userDetails.experience=(Number)(this.userDetails.experience)+(Number)(expGotten);
     }
+
     this.details.next(this.userDetails);
     setTimeout(()=>{
       this.alreadyChangedLvl=false;

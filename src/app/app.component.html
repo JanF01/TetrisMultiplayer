@@ -1,9 +1,11 @@
 <main>
 <nav>
-    <h3 routerLink="" routerLinkActive="true" >FIOKTIKK</h3>
+    <h3 routerLink="" routerLinkActive="true" *ngIf="!getLoginStatus()">FIOKTIKK</h3>
+    <h3 *ngIf="getLoginStatus()">FIOKTIKK</h3>
 
     <ul>
     <li routerLink="login" routerLinkActive="true" *ngIf="!getLoginStatus()">LOG IN</li>
+    <li class="panel" routerLink="panel" routerLinkActive="true" *ngIf="getLoginStatus()">PANEL</li>
     <li *ngIf="getLoginStatus()" (click)="logOut()">LOG OUT</li>
     </ul>
 </nav>

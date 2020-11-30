@@ -52,6 +52,9 @@ outline:none;
           letter-spacing:0.1em;
           cursor:pointer;
           outline:none;
+          &:nth-child(1){
+              padding-right:3em;
+          }
           img{
               height:1.1em;
               margin:0.25em 0em 0 1em;

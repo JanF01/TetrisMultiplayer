@@ -1,9 +1,5 @@
-<<<<<<< HEAD
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
-=======
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
->>>>>>> oktikk
 
 @Component({
   selector: 'app-panel-upper',
@@ -30,11 +26,11 @@ export class PanelUpperComponent implements OnInit, OnChanges {
   constructor(private router: Router) {}
 
   ngOnInit(): void {
-    this.imgPath+=this.theme+'.png'
+    this.imgPath = 'assets/edit'+this.theme+'.png'
   }
 
   ngOnChanges(){
-    this.imgPath= this.editing ? 'assets/done.png' : 'assets/edit'+this.theme+'.png';
+    this.imgPath = this.editing ? 'assets/done.png' : 'assets/edit'+this.theme+'.png';
   }
 
   changeNickname(){
