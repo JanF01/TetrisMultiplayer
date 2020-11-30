@@ -1,5 +1,5 @@
 <section>
-    <app-panel-upper theme="{{cookie.theme}}" (openSettings)="switchSettings()" nickname="{{user.nickname}}" rank="{{user.rank}}"></app-panel-upper>
+    <app-panel-upper theme="{{cookie.theme}}" (openSettings)="switchSettings()" nickname="{{user.nickname}}" rank="{{user.rank}}" (startGame)="startGame()"></app-panel-upper>
     <app-abilities skip="{{userAbilities.skip}}" save="{{userAbilities.save}}" destroy="{{userAbilities.destroy}}"></app-abilities>
     <app-shop level="{{user.level}}" keyOne="{{cookie.keyOne}}" keyTwo="{{cookie.keyTwo}}" keyThree="{{cookie.keyThree}}" theme="{{cookie.theme}}"></app-shop>
     <app-level-bar theme="{{cookie.theme}}" level="{{user.level}}" experience="{{experiencePerc}}"></app-level-bar>

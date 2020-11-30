@@ -13,6 +13,8 @@ export class PanelUpperComponent implements OnInit {
 
   @Output() openSettings: EventEmitter<any> = new EventEmitter<any>();
 
+  @Output() startGame: EventEmitter<any> = new EventEmitter<any>();
+
 
   constructor() { }
 
@@ -22,6 +24,10 @@ export class PanelUpperComponent implements OnInit {
 
   openPopup(){
     this.openSettings.emit(null);
+  }
+
+  startAGame(){
+    this.startGame.emit(null);
   }
 
 }

@@ -6,6 +6,7 @@ import { UserService } from '../user.service';
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import { CookieService } from 'ngx-cookie-service';
 import { Subscription } from 'rxjs';
+import { GameService } from '../game.service';
 
 @Component({
   selector: 'app-panel',
@@ -36,7 +37,7 @@ export class PanelComponent implements OnInit {
   cookieSub: Subscription;
 
 
-  constructor(private guard: GuardService, private router: Router, private userService: UserService, private cookies: CookieService) { }
+  constructor(private guard: GuardService, private router: Router, private userService: UserService, private cookies: CookieService, private gameService: GameService) { }
 
 
   @HostListener('window:keyup',['$event'])
@@ -108,6 +109,12 @@ export class PanelComponent implements OnInit {
   setBackground(){
     this.cookies.set("background",this.color);
     this.userService.refreshCookies();
+  }
+
+
+  startGame(){
+    this.gameService.guest = false;
+    this.router.navigateByUrl("tetris");
   }
   
 

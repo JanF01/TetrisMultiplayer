@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -14,7 +14,7 @@ export interface UserDetails {
   nickname: string
   rank: string
   level: number
-  experience: string
+  experience: number
   money: number
 
 }
@@ -27,10 +27,10 @@ export interface TokenPayload{
   nickname: string
   rank: string
   level: number
-  experience: string
+  experience: number
   money: number
-  exp: number;
-  iat: number;
+  exp: number
+  iat: number
 }
 
 @Injectable()
@@ -104,6 +104,26 @@ export class VerificationService {
       map((data: any) => {
          if(data.token){
           this.saveToken(data.token)
+        }
+        return data;
+      }
+    ));
+
+    return request
+  }
+
+  public updateUserDetails(): Observable<any>{
+    const base = this.http.post(`${this.baseUrl}/refresh_token`,{
+      'user_id': this.userDetails.id
+    })
+
+    const request = base.pipe(
+      map((data: any) => {
+         if(data.token){
+          this.saveToken(data.token);
+          setTimeout(()=>{
+            this.getUserDetails();
+          },200);
         }
         return data;
       }

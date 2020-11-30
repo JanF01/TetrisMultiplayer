@@ -7,7 +7,7 @@
         <h2 [ngClass]="{'colorful': theme=='Colorful'}">Rank:</h2>
         <img src="assets/{{rank}}.png">
     </div>
-    <button class="play" id="go" [ngClass]="{'colorfulButton': theme=='Colorful'}">PLAY</button>
+    <button class="play" id="go" [ngClass]="{'colorfulButton': theme=='Colorful'}" (click)="startAGame()">PLAY</button>
     <img src="assets/settings.png" class="settings" (click)="openPopup()">
 </div>
 

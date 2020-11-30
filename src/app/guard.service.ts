@@ -28,5 +28,9 @@ export class GuardService {
     location.reload();
   }
 
+  public updateUserDetails(): void{
+    this.verify.updateUserDetails().subscribe();
+  }
+
 
 }

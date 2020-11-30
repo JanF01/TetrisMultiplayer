@@ -1,16 +1,36 @@
 <main>
-    <img src="assets/grafikaTutorial.png" id="tutorial">
-    <button class="start" (click)="startGame()">START</button>
+    <img src="assets/grafikaTutorial.png" id="tutorial" *ngIf="isGuest()">
+    <button class="start" (click)="startGame()" [ngClass]="{'centerButton':!isGuest()}">START</button>
 <div class="container" (document:keydown)="control($event)">
-    <h2>Next Block</h2>
+    <h2 *ngIf="!isGuest()" class="nickname" [ngClass]="{'colorful': cookie.theme=='Colorful'}"><span>{{userDetails.nickname}}</span><img src="assets/{{userDetails.rank}}.png"></h2>
+    <h2 [ngClass]="{'colorful': cookie.theme=='Colorful'}">Next Block</h2>
+    <h2 [ngClass]="{'colorful': cookie.theme=='Colorful'}" class="saved">Saved Block</h2>
     <canvas class="nextTile" width="150" height="200"></canvas>
+    <canvas class="savedTile" width="150" height="200"></canvas>
     <canvas class="tetris" width="300" height="600"></canvas>
     <canvas class="gameStatus" width="300" height="600"></canvas>
 </div>
+
+<div class="abilities" *ngIf="!isGuest()">
+    <div class="ability">
+        <img src="assets/fast-forward{{cookie.theme}}.png">
+        <h2 [ngClass]="{'colorful': cookie.theme=='Colorful'}">{{userAbilities.skip}}</h2>
+    </div>
+    <div class="ability">
+        <img src="assets/save{{cookie.theme}}.png">
+        <h2 [ngClass]="{'colorful': cookie.theme=='Colorful'}">{{userAbilities.save}}</h2>
+    </div>
+    <div class="ability">
+        <img src="assets/bomb{{cookie.theme}}.png">
+        <h2 [ngClass]="{'colorful': cookie.theme=='Colorful'}">{{userAbilities.destroy}}</h2>
+    </div>
+</div>
 <div class="stats">
-    <div class="score">Score:&#10;0</div>
-    <div class="lines">Lines:&#10;0</div>
-    <div class="level">Level:&#10;1</div>
+    <div class="score" [ngClass]="{'colorful': cookie.theme=='Colorful'}">Score:&#10;0</div>
+    <div class="lines" [ngClass]="{'colorful': cookie.theme=='Colorful'}">Lines:&#10;0</div>
+    <div class="level" [ngClass]="{'colorful': cookie.theme=='Colorful'}">Level:&#10;1</div>
     <div class="skipBar"></div>
 </div>
+
+<button class="start ok" *ngIf="canGoToPanel()" (click)="goToPanel()">OK</button>
 </main>
