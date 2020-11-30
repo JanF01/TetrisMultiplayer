@@ -1,2 +1,2 @@
 RewriteEngine On
-ErrorDocument 404 /inkWho/index.html
+ErrorDocument 404 /index.html

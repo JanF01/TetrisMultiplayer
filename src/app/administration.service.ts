@@ -16,7 +16,7 @@ export class AdministrationService {
 
 
   getAbilities(): Observable<any>{
-     const base = this.http.get("./api/get_abilities");
+     const base = this.http.get("api/get_abilities");
 
      const request = base.pipe(
        map((res)=>{
@@ -28,7 +28,7 @@ export class AdministrationService {
   }
 
   getScores(): Observable<any>{
-      const base = this.http.get("./api/get_scores");
+      const base = this.http.get("api/get_scores");
 
      const request = base.pipe(
        map((res)=>{
