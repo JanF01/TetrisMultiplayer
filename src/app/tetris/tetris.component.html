@@ -1,7 +1,7 @@
 <main>
     <img src="assets/grafikaTutorial.png" id="tutorial" *ngIf="isGuest()">
     <button class="start" (click)="startGame()" [ngClass]="{'centerButton':!isGuest()}">START</button>
-<div class="container" (document:keydown)="control($event)">
+<div class="container" (document:keydown)="changeKeyStateDown($event)" (document:keyup)="changeKeyStateUp($event)">
     <h2 *ngIf="!isGuest()" class="nickname" [ngClass]="{'colorful': cookie.theme=='Colorful'}"><span>{{userDetails.nickname}}</span><img src="assets/{{userDetails.rank}}.png"></h2>
     <h2 [ngClass]="{'colorful': cookie.theme=='Colorful'}">Next Block</h2>
     <h2 [ngClass]="{'colorful': cookie.theme=='Colorful'}" class="saved">Saved Block</h2>

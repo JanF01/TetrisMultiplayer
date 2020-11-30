@@ -127,6 +127,7 @@ export class TetrisComponent{
 
     this.gameService.skipBarStatus=0; 
 
+
     this.scr = document.querySelector('.score')
     this.ln = document.querySelector('.lines')
     this.lvl = document.querySelector('.level')
@@ -287,6 +288,10 @@ skipBarRise(status: number){
 
 
 drawNextTile(tile: Tile){
+
+    if(this.keyState[37] || this.keyState[39])
+    this.moveTimeout = setTimeout(()=>{this.moveLoop();},90);
+
     this.gameService.skipBarStatus+=20; 
     this.skipBarRise(this.gameService.skipBarStatus);
     for(let r=0; r<6; r++){
@@ -396,12 +401,82 @@ restart(): void{
         return new Tile (gameService.tiles[r][0].blockArray, gameService.tiles[r][1], ctx, ctx2, gameService, router, userService);
     }
 
+    keyState = {}; 
+    firstUp = 0;
+
+
+
+   changeKeyStateDown(e){
+    if(!this.gameService.flags.gameOver){
+
+
+
+        if(e.keyCode!=32 && e.which!=32 && e.keyCode!=38 && e.which!=38 && e.keyCode!=this.cookie.keyThree.charCodeAt(0) && e.which!=this.cookie.keyThree.charCodeAt(0)){
+          
+            if(this.keyState[37] && e.keyCode==39) this.firstUp=39
+            else if(this.keyState[39] && e.keyCode==37) this.firstUp=37
+
+            if((e.keyCode!=39 && e.keyCode!=37) || (e.which!=39 && e.which!=37)){
+                this.keyState[39]=false;
+                this.keyState[37]=false;
+            }
+            clearTimeout(this.moveTimeout)
+            clearTimeout(this.moreTimeout)
+        }
+
+            this.keyState[e.keyCode || e.which] = true;
+   
+
+
+        this.control(e);
+
+        if(e.keyCode==39 || e.which==39 || e.keyCode==37 || e.which==37)
+        this.moveTimeout = setTimeout(()=>{this.moveLoop();},175)
+    }
+    } 
+
+    changeKeyStateUp(e){
+
+        if(e.keyCode!=32 && e.which!=32 && e.keyCode!=38 && e.which!=38 && e.keyCode!=this.cookie.keyThree.charCodeAt(0) && e.which!=this.cookie.keyThree.charCodeAt(0)){
+     
+           
+      this.keyState[e.keyCode || e.which] = false;
+
+            clearTimeout(this.moreTimeout)
+    
+    }
+
+
+
+    }
+    
+    moveTimeout: any
+    moreTimeout: any
+
+
+    moveLoop(){
+        if(this.keyState[37] && !this.keyState[39]){
+            this.gameService.tile.moveLeft(this.drawSquare);
+        }
+        else if(this.keyState[39] && !this.keyState[37]){
+        this.gameService.tile.moveRight(this.drawSquare);
+        }
+        else if(this.keyState[39] && this.keyState[37]){
+            if(this.firstUp==37){
+                this.gameService.tile.moveLeft(this.drawSquare);
+            }else{
+                this.gameService.tile.moveRight(this.drawSquare);
+            }
+        }
+
+        this.moreTimeout = setTimeout(()=>{this.moveLoop();}, 30);
+    }
+
+
+
 
 
 control(event): void{
-    if(event.keyCode == 82){
-        this.restart();
-    }
     if(this.gameService.flags.gameOver){
         return;
     }
@@ -419,17 +494,17 @@ control(event): void{
     if(this.gameService.flags.gamePaused){
         return;
     }
-    if(event.keyCode == 37){
-        this.gameService.tile.moveLeft(this.drawSquare);
-    }
     else if(event.keyCode == 38){
         this.gameService.tile.rotate(this.drawSquare);  
     }
-    else if(event.keyCode == 39){
-        this.gameService.tile.moveRight(this.drawSquare);
-    }
     else if(event.keyCode == 40){
         this.gameService.tile.moveDown(this.drawSquare, this.randomTile, this.drawBoard, this.gameStatus);
+    }
+    else if(event.keyCode == 37){
+        this.gameService.tile.moveLeft(this.drawSquare);
+    }
+    else if(event.keyCode == 39){
+    this.gameService.tile.moveRight(this.drawSquare);
     }
     else if(event.keyCode == 32){
         this.gameService.flags.isHardDrop = true;

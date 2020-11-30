@@ -99,7 +99,7 @@ export class UserService {
       this.alreadyChangedLvl=true;
     if((Number)(expNow)+(Number)(expGotten)>=(Number)(levelUp)){
       this.userDetails.level++;
-      this.userDetails.experience=(Number)(expGotten)-((Number)(levelUp)-(Number)(expNow));
+      this.userDetails.experience=(Number)(this.nextLevel[(Number)(this.userDetails.level)-1]);
     }else{
       this.userDetails.experience=(Number)(this.userDetails.experience)+(Number)(expGotten);
     }

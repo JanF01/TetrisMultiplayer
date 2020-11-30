@@ -16,16 +16,16 @@ main{
     h4{
         position:absolute;
         bottom:0.8em;
-        right:0.2em;
+        right:0;
         font-size:0.8em;
         letter-spacing:0.16em;
         color:white;
-        margin:0.5em 0em 0em 1.2em;
+        margin:0.5em 1.2em 0em 2em;
         cursor:pointer;
         outline:none;
         text-align:center;
         z-index:10;
-        width:9%;
+        width:auto;
     }
 }
 
@@ -39,7 +39,7 @@ nav{
     width:100%;
     h3{
         position:absolute;
-        top:0;
+        top:0.39em;
         left:0;
         width:10%;
 color:white;

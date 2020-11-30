@@ -34,9 +34,10 @@ export class PanelUpperComponent implements OnInit, OnChanges {
   }
 
   changeNickname(){
-    this.newNickname = this.nickname;
     if(this.editing){
       this.sendNickname.emit(this.newNickname);
+    }else{
+      this.newNickname = this.nickname;
     }
     this.editing = !this.editing;
     this.imgPath = this.editing ? 'assets/done.png' : 'assets/edit'+this.theme+'.png';
