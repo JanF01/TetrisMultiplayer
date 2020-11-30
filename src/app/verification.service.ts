@@ -37,7 +37,7 @@ export interface TokenPayload{
 export class VerificationService {
 
   private token: string;
-  baseUrl: string = 'http://localhost/tetris/api';
+  baseUrl: string = './api';
   public userDetails: User = {} as any;
 
 

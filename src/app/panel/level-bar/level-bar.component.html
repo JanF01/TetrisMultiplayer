@@ -1,4 +1,4 @@
 <div class="lvl">
 <h2 [ngClass]="{'colorful': theme=='Colorful'}">LEVEL {{level}}</h2>
-<div class="bar" [ngStyle]="{'background': 'linear-gradient( to right, #15F9EBFF, #15F9EB77 '+(41+2)+'%, #15F9EB12 '+(41+3)+'% )'}"><span [ngClass]="{'colorful': theme=='Colorful'}">{{experience}}%</span></div>
+<div class="bar" [ngStyle]="{'background': 'linear-gradient( to right, #15F9EBFF, #15F9EB77 '+(getExperience()+2)+'%, #15F9EB12 '+(getExperience()+3)+'% )'}"><span [ngClass]="{'colorful': theme=='Colorful'}">{{experience}}%</span></div>
 </div>

@@ -85,7 +85,7 @@ export class UserService {
     theme: 'White'
   }
 
-  private baseUrl: string =  'http://localhost/tetris/api'
+  private baseUrl: string =  './api'
 
   constructor(private cookies: CookieService, private http: HttpClient) { }
 

@@ -16,4 +16,8 @@ export class LevelBarComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  getExperience(){
+    return (Number)(this.experience);
+  }
+
 }

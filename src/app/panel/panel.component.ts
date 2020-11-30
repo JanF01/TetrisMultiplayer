@@ -114,14 +114,20 @@ export class PanelComponent implements OnInit {
 
   
   setKeyOne($event){
+    this.changingShortcut[1] = false;
+    this.changingShortcut[2] = false;
     this.changingShortcut[0] = true;
   }
 
   setKeyTwo(){
+    this.changingShortcut[0] = false;
+    this.changingShortcut[2] = false;
     this.changingShortcut[1] = true;
   }
 
   setKeyThree(){
+    this.changingShortcut[0] = false;
+    this.changingShortcut[1] = false;
     this.changingShortcut[2] = true;
   }
   setTheme(){

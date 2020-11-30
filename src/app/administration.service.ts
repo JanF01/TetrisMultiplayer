@@ -10,7 +10,7 @@ export class AdministrationService {
 
 
 
-  baseUrl: string = 'http://localhost/tetris/api'
+  baseUrl: string = './api'
 
   constructor(private http: HttpClient) { }
 
