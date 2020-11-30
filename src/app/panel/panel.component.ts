@@ -72,6 +72,27 @@ export class PanelComponent implements OnInit {
         this.cookie = c;
         this.color = this.cookie.background;
         this.theme = this.cookie.theme;
+        
+        if(this.color=="Still"){
+          document.body.style.animation="none";
+          document.body.style.background="purple"
+        }
+        else if(this.color=="Base"){
+
+          document.body.style.animation="none";
+          document.body.style.background="red"
+          document.body.style.animation="bccBase 10s infinite";
+        }
+        else if(this.color=="Speed"){
+          document.body.style.animation="none";
+          document.body.style.background="red"
+          document.body.style.animation="bccBase 2s infinite";
+        }
+        else if(this.color=="Rainbow"){
+          document.body.style.animation="none";
+          document.body.style.background="red"
+          document.body.style.animation="bccRainbow 1s infinite";
+        }
       })
       this.userService.getDetails();
       this.experiencePerc = this.userService.getExpPercentage();

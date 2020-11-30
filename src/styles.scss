@@ -6,9 +6,9 @@
 body{
     margin:0 auto;
     background-color:red;
-    animation: bcc 10s infinite;
+    animation: bccBase 10s infinite;
 }
-@keyframes bcc{
+@keyframes bccBase{
   0%{
     background-color:red;
   }
@@ -29,3 +29,31 @@ body{
   }
 
 }
+@keyframes bccRainbow{
+  0%{
+    background-color:red;
+  }
+  15%{
+    background-color:rgb(42, 177, 255); 
+  }
+  30%{
+    background-color:rgb(0, 194, 10); 
+  }
+  45%{
+    background-color:pink; 
+  }
+  60%{
+    background-color:yellow; 
+  }
+  75%{
+    background-color:purple; 
+  }
+  90%{
+    background-color:rgb(0, 121, 94); 
+  }
+  100%{
+    background-color:red; 
+  }
+
+}
+

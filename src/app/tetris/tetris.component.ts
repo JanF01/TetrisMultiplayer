@@ -46,6 +46,9 @@ export class TetrisComponent{
   userAbilities: any;
 
 
+  showButton: boolean = false;
+
+
 
 
   stop: boolean = false;
@@ -75,7 +78,9 @@ export class TetrisComponent{
 
   startGame(): void{
 
-     
+    this.restart();
+    this.userService.backToPanel=false;
+    this.canGoToPanel();
 
      (document.getElementsByClassName('container')[0] as HTMLElement).style.display="flex";
      (document.getElementsByClassName('stats')[0] as HTMLElement).style.display="inline-block";
@@ -87,22 +92,24 @@ export class TetrisComponent{
          this.userService.getDetails();
          this.userService.getAbilities();
          this.userService.refreshCookies();
-         this.canvas4 = document.querySelector('.savedTile')
-          this.ctx4 = this.canvas4.getContext('2d')
+         this.canvas4 = document.querySelector('.savedTile');
+         this.ctx4 = this.canvas4.getContext('2d');
      }
 
     this.canvas = document.querySelector('.tetris')
     this.ctx = this.canvas.getContext('2d')
     this.canvas2 = document.querySelector('.gameStatus')
     this.ctx2 = this.canvas2.getContext('2d')
+    this.ctx2.clearRect(0,0,300,600);
     this.canvas3 = document.querySelector('.nextTile')
     this.ctx3 = this.canvas3.getContext('2d');
     this.skipBar = document.getElementsByClassName('skipBar')[0] as HTMLElement;
 
     this.prepareBoard();
 
-    if(!this.gameService.first){
     this.drawBoard();
+
+    if(!this.gameService.first){
     
     this.gameService.tiles[0].unshift(new blockI());
     this.gameService.tiles[1].unshift(new blockJ());
@@ -171,12 +178,11 @@ export class TetrisComponent{
         ctx2.globalAlpha = 1;
         ctx2.fillStyle = "#FFFFFF";
         ctx2.textAlign= "center";
-        ctx2.fillText("GAME OVER", gameService.column*gameService.sq/2, gameService.row*gameService.sq/2-180);
+        ctx2.fillText("GAME OVER", gameService.column*gameService.sq/2, gameService.row*gameService.sq/2-220);
 
         if(!gameService.guest){
 
             userService.backToPanel=true;
-
 
             let expNow = userService.getUserExp();
             let expForNext = userService.getNextLevelExp();
@@ -188,28 +194,27 @@ export class TetrisComponent{
 
             let level = userService.getUserLevel(expNow,expForNext,exp);
      
-            ctx2.fillText("SCORE: "+gameService.score, gameService.column*gameService.sq/2, gameService.row*gameService.sq/2-120);
-            ctx2.fillText("MONEY: "+money, gameService.column*gameService.sq/2, gameService.row*gameService.sq/2-60);
-            ctx2.fillText("LEVEL: "+level, gameService.column*gameService.sq/2, gameService.row*gameService.sq/2);
-            ctx2.fillText("+"+exp+"EXP", gameService.column*gameService.sq/2, gameService.row*gameService.sq/2+60);
+            ctx2.fillText("SCORE: "+gameService.score, gameService.column*gameService.sq/2, gameService.row*gameService.sq/2-160);
+            ctx2.fillText("MONEY: "+money, gameService.column*gameService.sq/2, gameService.row*gameService.sq/2-100);
+            ctx2.fillText("LEVEL: "+level, gameService.column*gameService.sq/2, gameService.row*gameService.sq/2-40);
+            ctx2.fillText("+"+exp+"EXP", gameService.column*gameService.sq/2, gameService.row*gameService.sq/2+20);
 
             userService.saveGameIfBetter(gameService.score).subscribe((res)=>{
 
                 if(res=="NO PERFORMANCE IMPROVEMENT"){
                 ctx2.font = "17px 'Manrope'";
-                ctx2.fillText(res, gameService.column*gameService.sq/2, gameService.row*gameService.sq/2+120);
+                ctx2.fillText(res, gameService.column*gameService.sq/2, gameService.row*gameService.sq/2+80);
                 }else{
                     ctx2.font = "17px 'Manrope'";
-                    ctx2.fillText("PERFORMANCE IMPROVED", gameService.column*gameService.sq/2, gameService.row*gameService.sq/2+120);
+                    ctx2.fillText("PERFORMANCE IMPROVED", gameService.column*gameService.sq/2, gameService.row*gameService.sq/2+80);
                     ctx2.font = "24x 'Manrope'";
                     if(res.old_pp){
-                    ctx2.fillText(res.old_pp+"PP"+" -> "+res.new_pp+"PP", gameService.column*gameService.sq/2, gameService.row*gameService.sq/2+170);
+                    ctx2.fillText(res.old_pp+"PP"+" -> "+res.new_pp+"PP", gameService.column*gameService.sq/2, gameService.row*gameService.sq/2+130);
                     }else{
-                    ctx2.fillText(res.new_pp, gameService.column*gameService.sq/2, gameService.row*gameService.sq/2+170); 
+                    ctx2.fillText(res.new_pp, gameService.column*gameService.sq/2, gameService.row*gameService.sq/2+130); 
                     }
                 }
 
-                gameService.score=0;
             });
 
 
@@ -376,15 +381,8 @@ restart(): void{
     this.gameService.lines=0;
     this.gameService.score=0;
     this.gameService.level=1;
-    this.scr.innerHTML = "Score:&#10;"+this.gameService.score; 
-    this.ln.innerHTML = "Lines:&#10;"+this.gameService.lines;
-    this.lvl.innerHTML = "Level:&#10;"+this.gameService.level;
     this.gameService.time = {start: 0, elapsed: 0, level: 1000};
-    this.gameService.tile = this.randomTile();
     this.gameService.tileDistance = 0;
-    this.drawBoard();
-    this.gameStatus();
-    this.drop();
 }
 
 
