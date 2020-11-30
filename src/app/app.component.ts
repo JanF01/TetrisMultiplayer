@@ -28,7 +28,7 @@ export class AppComponent implements OnInit{
          this.router.navigateByUrl("/panel");
          this.guard.updateUserDetails();
 
-        this.user.refreshCookies();
+         this.user.refreshCookies();
     }
   }
 

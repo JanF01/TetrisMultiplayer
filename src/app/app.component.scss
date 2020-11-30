@@ -52,7 +52,7 @@ outline:none;
           letter-spacing:0.1em;
           cursor:pointer;
           outline:none;
-          &:nth-child(1){
+          &.panel{
               padding-right:3em;
           }
           img{

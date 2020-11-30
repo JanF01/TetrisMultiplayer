@@ -74,7 +74,7 @@ export class VerificationService {
 
 
   public register(login: string, pass: string, email: string, nickname: string): Observable<any>{
-    const base = this.http.post(`${this.baseUrl}/register`,{
+    const base = this.http.post(`./api/register`,{
       username: login,
       pass: pass,
       email: email,
@@ -95,7 +95,7 @@ export class VerificationService {
   }
 
   public login(login: string, pass: string ): Observable<any>{
-    const base = this.http.post(`${this.baseUrl}/login`,{
+    const base = this.http.post(`./api/login`,{
       username: login,
       pass: pass
     })
@@ -113,7 +113,7 @@ export class VerificationService {
   }
 
   public updateUserDetails(): Observable<any>{
-    const base = this.http.post(`${this.baseUrl}/refresh_token`,{
+    const base = this.http.post(`./api/refresh_token`,{
       'user_id': this.userDetails.id
     })
 
