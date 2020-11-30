@@ -103,7 +103,7 @@ CREATE TABLE `user` (
   `nickname` varchar(25) NOT NULL,
   `rank` varchar(3) NOT NULL,
   `level` int(11) NOT NULL,
-  `experience` varchar(45) NOT NULL,
+  `experience` int(11) NOT NULL,
   `money` int(11) NOT NULL,
   `last_login` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -254,7 +254,7 @@ ALTER TABLE `user_has_game`
 -- Ograniczenia dla tabeli `game`
 --
 ALTER TABLE `game`
-  ADD CONSTRAINT `game_ibfk_1` FOREIGN KEY (`game_history_id`) REFERENCES `game_history` (`id`);
+  ADD CONSTRAINT `game_ibfk_1` FOREIGN KEY (`game_history_id`) REFERENCES `game_history` (`id`) ON DELETE CASCADE;
 
 --
 -- Ograniczenia dla tabeli `game_block`
@@ -280,7 +280,7 @@ ALTER TABLE `user_has_abilities`
 --
 ALTER TABLE `user_has_game`
   ADD CONSTRAINT `user_has_game_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
-  ADD CONSTRAINT `user_has_game_ibfk_2` FOREIGN KEY (`game_id`) REFERENCES `game` (`id`);
+  ADD CONSTRAINT `user_has_game_ibfk_2` FOREIGN KEY (`game_id`) REFERENCES `game` (`id`) ON DELETE CASCADE;
 
 
 

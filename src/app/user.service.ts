@@ -16,12 +16,14 @@ export class UserService {
   public userAbilities: Subject<Object> = new Subject<Object>();
   private abs: any;
 
+  backToPanel: boolean = false;
+
   private nextLevel: Array<number> = [
-    180,
-    490,
-    1020,
-    3011,
-    3998,
+    80,
+    250,
+    800,
+    1900,
+    3000,
     6000,
     7920,
     10500,
@@ -50,6 +52,29 @@ export class UserService {
     7560000
   ]
 
+  private rankup: Array<number> = [
+    800,
+    2300,
+    4800,
+    9000,
+    15000,
+    25000,
+    30000,
+    40000
+  ]
+
+  private ranks: Array<string> = [
+    'em1',
+    'em2',
+    'em3',
+    'dm1',
+    'dm2',
+    'dm3',
+    'gd1',
+    'gd2',
+    'gd3',
+  ]
+
   
   cookieObservable: Subject<any> = new Subject<any>();
   cookie = {
@@ -69,9 +94,67 @@ export class UserService {
     return (this.userDetails.level!=undefined);
   }
 
+  alreadyChangedLvl:boolean = false;
+
+  getUserLevel(expNow: number,levelUp: number,expGotten: number): number{
+    if(!this.alreadyChangedLvl){
+      this.alreadyChangedLvl=true;
+    if((Number)(expNow)+(Number)(expGotten)>=(Number)(levelUp)){
+      this.userDetails.level++;
+      this.userDetails.experience=(Number)(expGotten)-((Number)(levelUp)-(Number)(expNow));
+    }else{
+      this.userDetails.experience=(Number)(this.userDetails.experience)+(Number)(expGotten);
+    }
+    this.details.next(this.userDetails);
+    setTimeout(()=>{
+      this.alreadyChangedLvl=false;
+    },2000);
+    return this.userDetails.level;
+  }
+  return this.userDetails.level;
+  }
+
+
+  alreadyChangedMoney:boolean = false;
+
+  moneyChange(amount: number){
+
+    if(!this.alreadyChangedMoney){
+      this.alreadyChangedMoney=true;
+      this.userDetails.money=(Number)(this.userDetails.money)+(Number)(amount);
+      console.log(this.userDetails.money);
+      setTimeout(()=>{
+        this.alreadyChangedMoney=false;
+      },2000);
+    }
+
+  }
+
+
+  getUserExp(){
+    return this.userDetails.experience;
+  }
+
+  getNextLevelExp(){
+    return this.nextLevel[this.userDetails.level];
+  }
 
   getExpPercentage(): number{
      return Math.round((this.userDetails.experience/this.nextLevel[this.userDetails.level])*100);
+  }
+
+  getAbilities(){
+    if(this.checkIfLogged()){
+      this.userAbilities.next(this.abs);
+    }
+  }
+
+  checkIfRankUp(pp: number){
+    let index = this.ranks.indexOf(this.userDetails.rank);
+    if(pp>=this.rankup[index]){
+      this.userDetails.rank=this.ranks[index+1];
+    }
+    this.updateUser().subscribe();;
   }
 
   getDetails(){
@@ -121,6 +204,7 @@ export class UserService {
 
   saveDetails(userDetails: User){
     this.userDetails = userDetails;
+    this.getDetails();
   }
 
   checkIfHasMoney(target: number){
@@ -160,6 +244,37 @@ export class UserService {
      )
 
      return request;
+  }
+
+
+  useAbility(ability: string): Observable<any>{
+
+    let ability_id = 0;
+
+    switch(ability){
+       case 'skip': ability_id=1;
+       break;
+       case 'save': ability_id=2;
+       break;
+       case 'destroy': ability_id=3;
+       break;
+    }
+
+    const base = this.http.post(`${this.baseUrl}/use_ability`,{
+      'ability': ability_id,
+      'user_id': this.userDetails.id
+    })
+
+    const request = base.pipe(
+      map((res)=>{
+         this.abs[ability]--;
+         this.userAbilities.next(this.abs);
+      })
+    )
+
+    return request;
+
+
   }
 
   getUserAbilities(): Observable<any>{
@@ -203,6 +318,58 @@ export class UserService {
     )
 
     return request;
+  }
+
+  updateUser(): Observable<any>{
+    const base = this.http.post(`${this.baseUrl}/update_user`,{
+      'user_id': this.userDetails.id,
+      'level': this.userDetails.level,
+      'exp': this.userDetails.experience,
+      'rank': this.userDetails.rank,
+      'nickname': this.userDetails.nickname,
+      'money': this.userDetails.money,
+    })
+
+    const request = base.pipe(
+      map((res)=>{
+        return res;
+      })
+    )
+
+    return request;
+  }
+
+  alreadySent: boolean = false;
+
+  saveGameIfBetter(score: number): Observable<any>{
+
+    if(!this.alreadySent){
+
+      this.alreadySent=true;
+    const base = this.http.post(`${this.baseUrl}/save_best_games`,{
+      'user_id': this.userDetails.id,
+      'score': score,
+    })
+
+    const request = base.pipe(
+      map((res: any)=>{
+        setTimeout(()=>{
+          this.alreadySent=false;
+         },2000);
+
+        if(res=="No improvement" || res=="Błąd"){
+          this.updateUser().subscribe();
+          return "NO PERFORMANCE IMPROVEMENT";
+        }else{
+          this.checkIfRankUp(res.new_pp);
+          return res;
+        }
+      })
+    )
+
+    return request;
+
+    }
   }
 
 

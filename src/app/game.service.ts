@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Subject, TimeoutError } from 'rxjs';
 import { Tile } from './tetris/models/tile.model';
 
 @Injectable()
@@ -27,6 +27,8 @@ export class GameService {
   copy: any = []
   tile: any
   nextTile: any;
+
+  savedTile: any = null;
   
 
   tiles: Array<Array<any>> = [
@@ -41,6 +43,8 @@ export class GameService {
 
   numbers: Array<string> = ['0','1','2','3','4','5','6']
 
+  totalTime: number = 0;
+
   scores: Array<number> = [
     30,
     120,
@@ -51,6 +55,9 @@ export class GameService {
 time: any = {start: 0, elapsed: 0, level: 1000}
 
 skipBarStatus = 0;
+
+
+guest: boolean = true;
 
 constructor() {
 
@@ -70,8 +77,9 @@ tileDropScore(tileDistance, isHardDrop){
     else{
         this.score += tileDistance;
     }
-
+    this.change.next("scr");
 }
+
 increseLevel(){
   this.change.next("ln");
     if(this.level > 25){

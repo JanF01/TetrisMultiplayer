@@ -2,6 +2,7 @@ import {block} from './block.model';
 import {TetrisComponent} from '../tetris.component';
 import { GameService } from 'src/app/game.service';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/user.service';
 
 export class Tile{
     tetromino: Array<Array<number>>
@@ -11,11 +12,13 @@ export class Tile{
     y: number
     x: number
     private gameService: GameService
+    private userService: UserService
     ctx: CanvasRenderingContext2D
     ctx2: CanvasRenderingContext2D
     router: Router;
-    constructor(tetromino, color, ctx,ctx2, gameService, router){
+    constructor(tetromino, color, ctx,ctx2, gameService, router, userService){
         this.gameService = gameService;
+        this.userService = userService
         this.tetromino = tetromino
         this.color = color
         this.ctx = ctx
@@ -84,7 +87,7 @@ export class Tile{
         else{
               this.lock(dS,dB,gS);
               this.gameService.tile = this.gameService.nextTile;
-              this.gameService.nextTile = rT(this.gameService,this.ctx,this.ctx2, this.router);
+              this.gameService.nextTile = rT(this.gameService,this.ctx,this.ctx2, this.router, this.userService);
               this.gameService.newTileCreated();
         }
     }
@@ -161,15 +164,21 @@ export class Tile{
     lock(dS: Function, dB: Function, gS: Function){
         for(let r=0; r<this.activeTetromino.length; r++){
             for(let c=0; c<this.activeTetromino.length; c++){
+
                 if(!this.activeTetromino[r][c]){
                     continue;
                 }
                 if(this.y + r < 0){
                     this.gameService.flags.gameOver = true;
-                    gS(this.gameService,this.ctx2,this.router);
-                    setTimeout(()=>{
-                        this.router.navigateByUrl("/login");
-                    },1000);
+             
+                    gS(this.gameService,this.userService,this.ctx2,this.router);
+
+                        if(this.gameService.guest){
+                            setTimeout(()=>{
+                                this.router.navigateByUrl("/login");
+                            },1000);
+                        }
+
                     break;
                 }
                 this.gameService.board[this.y+r][this.x+c] = this.color;
