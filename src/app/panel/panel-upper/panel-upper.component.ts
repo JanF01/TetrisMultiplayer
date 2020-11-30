@@ -1,11 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-panel-upper',
   templateUrl: './panel-upper.component.html',
   styleUrls: ['./panel-upper.component.scss']
 })
-export class PanelUpperComponent implements OnInit {
+export class PanelUpperComponent implements OnInit, OnChanges {
 
   public editing: boolean = false
   public imgPath: string = 'assets/edit'
@@ -26,6 +26,10 @@ export class PanelUpperComponent implements OnInit {
 
   ngOnInit(): void {
     this.imgPath+=this.theme+'.png'
+  }
+
+  ngOnChanges(){
+    this.imgPath= this.editing ? 'assets/done.png' : 'assets/edit'+this.theme+'.png';
   }
 
   changeNickname(){
