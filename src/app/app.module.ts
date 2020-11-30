@@ -6,8 +6,11 @@ import { HttpClientModule } from '@angular/common/http'
 import { RouterModule, Routes} from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
+
 import { AppComponent } from './app.component';
+
 import { WelcomeComponent } from './welcome/welcome.component';
+
 import { TetrisComponent } from './tetris/tetris.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
@@ -30,6 +33,8 @@ import { ShopComponent } from './panel/shop/shop.component';
 import { LevelBarComponent } from './panel/level-bar/level-bar.component';
 import { AbilityComponent } from './panel/shop/ability/ability.component';
 import { HallComponent } from './hall/hall.component';
+import { MentionsComponent } from './mentions/mentions.component';
+import { TermsComponent } from './terms/terms.component';
 
 
 enableRipple(true);
@@ -41,14 +46,16 @@ const appRoutes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'tetris', component: TetrisComponent},
-  {path: 'hall', component: HallComponent}
+  {path: 'hall', component: HallComponent},
+  {path: 'mentions', component: MentionsComponent},
+  {path: 'terms', component: TermsComponent}
 ]
 
 
 @NgModule({
   declarations: [
-    AppComponent,
     WelcomeComponent,
+    AppComponent,
     TetrisComponent,
     LoginComponent,
     RegisterComponent,
@@ -58,7 +65,9 @@ const appRoutes: Routes = [
     ShopComponent,
     LevelBarComponent,
     AbilityComponent,
-    HallComponent
+    HallComponent,
+    MentionsComponent,
+    TermsComponent
   ],
   imports: [
     RouterModule.forRoot(
@@ -73,6 +82,6 @@ const appRoutes: Routes = [
     ReactiveFormsModule
   ],
   providers: [GameService, VerificationService, GuardService, CookieService],
-  bootstrap: [AppComponent, WelcomeComponent, LoginComponent, RegisterComponent, TetrisComponent]
+  bootstrap: [AppComponent, LoginComponent, RegisterComponent, TetrisComponent]
 })
 export class AppModule { }

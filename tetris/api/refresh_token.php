@@ -1,6 +1,6 @@
 <?php
 
-   require_once("../connections/connection.php");
+require_once("../connection.php");
    require_once("../models/user.php");
    require_once("../helpers/createJWT.php");
 

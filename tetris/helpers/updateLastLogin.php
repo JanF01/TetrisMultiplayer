@@ -3,7 +3,7 @@
 
   function updateLastLogin($username, $datetime){
 
-  require("../connections/connection.php");
+  require("../connection.php");
           
   $sql = "UPDATE user SET last_login = :date_time WHERE username=:user_name";
   

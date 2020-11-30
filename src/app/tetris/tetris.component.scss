@@ -57,7 +57,7 @@ main{
             display:flex;
             align-items:center;
             span{
-                z-index:1;
+                z-index:10;
             }
             &.nickname{
                 position:absolute;
@@ -99,6 +99,9 @@ main{
             width: 304px;
             height: 600px;
             color:white;
+            &.color{
+                left:249px;
+            }
         }
         .tetris{
             color:white;

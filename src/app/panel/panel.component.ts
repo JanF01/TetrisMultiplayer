@@ -96,6 +96,7 @@ export class PanelComponent implements OnInit {
       })
       this.userService.getDetails();
       this.experiencePerc = this.userService.getExpPercentage();
+
       this.userService.userAbilities.subscribe((abs)=>{
             this.userAbilities=abs;
       })

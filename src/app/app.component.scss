@@ -12,6 +12,21 @@ main{
     router-outlet{
         width:100%;
     }
+
+    h4{
+        position:absolute;
+        bottom:0.8em;
+        right:0;
+        font-size:0.8em;
+        letter-spacing:0.16em;
+        color:white;
+        margin:0.5em 0em 0em 1.2em;
+        cursor:pointer;
+        outline:none;
+        text-align:center;
+        z-index:10;
+        width:7%;
+    }
 }
 
 
@@ -62,4 +77,6 @@ outline:none;
         }
     }
 }
+
+
 

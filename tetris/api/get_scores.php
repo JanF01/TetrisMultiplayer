@@ -1,6 +1,6 @@
 <?php
 
-    require_once("../connections/connection.php");
+require_once("../connection.php");
 
     $sql = 'SELECT u.nickname, u.rank, u.level, r.performance, r.placement FROM user u INNER JOIN ranking_position r ON u.id=r.user_id ORDER BY r.placement';
     

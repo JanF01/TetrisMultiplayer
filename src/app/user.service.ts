@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { GuardService } from './guard.service';
 import { User } from './models/User';
 
 @Injectable({
@@ -139,7 +138,11 @@ export class UserService {
   }
 
   getExpPercentage(): number{
-     return Math.round((((Number)(this.userDetails.experience)-(Number)(this.nextLevel[this.userDetails.level-1]))/(Number)(this.nextLevel[this.userDetails.level])-(Number)(this.nextLevel[this.userDetails.level-1]))*100);
+     if(this.userDetails.level==0){
+      return (Number)(Math.round(((Number)(this.userDetails.experience)/(Number)(this.nextLevel[this.userDetails.level]))*100));
+     }
+
+     return (Number)(Math.round(((Number)(((Number)(this.userDetails.experience)-(Number)(this.nextLevel[this.userDetails.level-1])))/(Number)((Number)(this.nextLevel[this.userDetails.level])-(Number)(this.nextLevel[this.userDetails.level-1])))*100));
   }
 
   getAbilities(){

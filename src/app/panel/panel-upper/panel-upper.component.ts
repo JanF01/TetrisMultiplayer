@@ -26,7 +26,7 @@ export class PanelUpperComponent implements OnInit, OnChanges {
   constructor(private router: Router) {}
 
   ngOnInit(): void {
-    this.imgPath = 'assets/edit'+this.theme+'.png'
+    this.imgPath = 'assets/edit'+this.theme+'.png';
   }
 
   ngOnChanges(){
@@ -34,6 +34,7 @@ export class PanelUpperComponent implements OnInit, OnChanges {
   }
 
   changeNickname(){
+    this.newNickname = this.nickname;
     if(this.editing){
       this.sendNickname.emit(this.newNickname);
     }

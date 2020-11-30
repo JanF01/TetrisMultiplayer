@@ -1,6 +1,6 @@
 <?php 
 
-require_once("../connections/connection.php");
+require_once("../connection.php");
 require_once("insert_new_game.php");
 require_once("update_placement.php");
 

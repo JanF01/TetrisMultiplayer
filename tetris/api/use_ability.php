@@ -1,6 +1,6 @@
 <?php
 
-require_once("../connections/connection.php");
+require_once("../connection.php");
 
 if($json = file_get_contents("php://input")){
 

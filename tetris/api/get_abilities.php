@@ -1,6 +1,6 @@
 <?php
 
-require_once("../connections/connection.php");
+require_once("../connection.php");
 
 
 $sql = "SELECT * FROM abilities";

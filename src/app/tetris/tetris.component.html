@@ -8,7 +8,7 @@
     <canvas class="nextTile" width="150" height="200"></canvas>
     <canvas class="savedTile" width="150" height="200"></canvas>
     <canvas class="tetris" width="300" height="600"></canvas>
-    <canvas class="gameStatus" width="300" height="600"></canvas>
+    <canvas class="gameStatus" width="300" height="600" [ngClass]="{'color': cookie.theme=='Colorful'}"></canvas>
 </div>
 
 <div class="abilities" *ngIf="!isGuest()">

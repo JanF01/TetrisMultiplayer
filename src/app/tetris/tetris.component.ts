@@ -287,7 +287,7 @@ skipBarRise(status: number){
 
 
 drawNextTile(tile: Tile){
-    this.gameService.skipBarStatus+=10; 
+    this.gameService.skipBarStatus+=20; 
     this.skipBarRise(this.gameService.skipBarStatus);
     for(let r=0; r<6; r++){
         for(let c=0; c<8; c++){
@@ -304,7 +304,7 @@ drawNextTile(tile: Tile){
 }
 
 drawSavedTile(tile:Tile){
-    this.gameService.skipBarStatus+=10; 
+    this.gameService.skipBarStatus+=20; 
     this.skipBarRise(this.gameService.skipBarStatus);
     for(let r=0; r<6; r++){
         for(let c=0; c<8; c++){
