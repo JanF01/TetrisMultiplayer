@@ -86,6 +86,7 @@ export class PanelComponent implements OnInit {
 
   }
 
+
   switchSettings(){
       this.settingsOpen = !this.settingsOpen;
   }
@@ -117,6 +118,9 @@ export class PanelComponent implements OnInit {
     this.router.navigateByUrl("tetris");
   }
   
+  saveNickname(nick){
+    this.userService.changeNickname(nick);
+  }
 
 
 }

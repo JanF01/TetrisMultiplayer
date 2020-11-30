@@ -157,6 +157,12 @@ export class UserService {
     this.updateUser().subscribe();;
   }
 
+  changeNickname(nickname){
+    this.userDetails.nickname = nickname;
+    console.log(nickname);
+    this.updateUser().subscribe();
+  }
+
   getDetails(){
     if(this.checkIfLogged()){
       this.details.next(this.userDetails);

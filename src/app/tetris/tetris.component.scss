@@ -13,7 +13,6 @@ main{
     min-height: 100vh;
     width: 100%;
     img{
-        width:45%;
         position:absolute;
 
     }
@@ -62,15 +61,16 @@ main{
             }
             &.nickname{
                 position:absolute;
-                left:312px;
+                left:332px;
                 top:640px;
                 font-weight:800;
                 letter-spacing:0.2em;
                 color:rgb(255, 255, 255);
                 img{
-                    margin-left:3.4em;
+                    position: relative;
+                    margin-left:0.5em;
                     z-index:0;
-                    width:34%;
+                    height: 30px;
                 }
             }
             &.saved{
