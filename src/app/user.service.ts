@@ -105,7 +105,6 @@ export class UserService {
     }else{
       this.userDetails.experience=(Number)(this.userDetails.experience)+(Number)(expGotten);
     }
-
     this.details.next(this.userDetails);
     setTimeout(()=>{
       this.alreadyChangedLvl=false;
@@ -141,7 +140,7 @@ export class UserService {
   }
 
   getExpPercentage(): number{
-     return Math.round((this.userDetails.experience/this.nextLevel[this.userDetails.level])*100);
+     return Math.round((((Number)(this.userDetails.experience)-(Number)(this.nextLevel[this.userDetails.level-1]))/(Number)(this.nextLevel[this.userDetails.level])-(Number)(this.nextLevel[this.userDetails.level-1]))*100);
   }
 
   getAbilities(){
