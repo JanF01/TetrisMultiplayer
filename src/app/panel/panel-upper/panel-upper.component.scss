@@ -31,6 +31,7 @@
         width: 50px;
         margin-left: 5%;
         outline: none;
+        transition: 0.2s;
         &:hover{
             transform: scale(1.2);
         }
