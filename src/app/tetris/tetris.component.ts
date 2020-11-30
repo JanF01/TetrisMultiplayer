@@ -177,6 +177,7 @@ export class TetrisComponent{
 
             userService.backToPanel=true;
 
+
             let expNow = userService.getUserExp();
             let expForNext = userService.getNextLevelExp();
             let exp = Math.round(gameService.score/41);
@@ -207,7 +208,11 @@ export class TetrisComponent{
                     ctx2.fillText(res.new_pp, gameService.column*gameService.sq/2, gameService.row*gameService.sq/2+170); 
                     }
                 }
+
+                gameService.score=0;
             });
+
+
 
         }
 
