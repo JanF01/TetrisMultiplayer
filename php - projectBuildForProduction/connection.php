@@ -1,15 +1,15 @@
 <?php
 
-$dbhost = "mysql01.oktikkx.beep.pl";
+$dbhost = "localhost";
 $dbname = "tetris";
-$dbuser = "headadmin";
-$dbpassword = "marchew";
+$dbuser = "root";
+$dbpassword = "";
 
 try{
 $db_connection = new PDO("mysql:host=".$dbhost.";dbname=".$dbname, $dbuser, $dbpassword);
 }
 catch(PDOException $e){
-   echo "Błąd podczas łączenia się z bazą danych".$e;
+   echo "Błąd podczas łączenia się z bazą danych";
 }
 
 ?>
