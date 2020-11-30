@@ -27,6 +27,14 @@
           margin-left:1em;
       }
     }
+    .hall{
+        width: 50px;
+        margin-left: 5%;
+        outline: none;
+        &:hover{
+            transform: scale(1.2);
+        }
+    }
     .play{
         font-family:'Manrope';
         font-weight:800;
@@ -51,7 +59,7 @@
     img.settings{
         width: 2.1em;
         height: 2.1em;
-        margin-left:10%;
+        margin-left:5%;
         transition:all 1s;
         &:hover{
             transform:rotate(260deg);
