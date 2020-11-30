@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
+=======
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
+>>>>>>> oktikk
 
 @Component({
   selector: 'app-panel-upper',
@@ -22,7 +27,7 @@ export class PanelUpperComponent implements OnInit, OnChanges {
   @Output() startGame: EventEmitter<any> = new EventEmitter<any>();
 
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
     this.imgPath+=this.theme+'.png'
@@ -42,6 +47,10 @@ export class PanelUpperComponent implements OnInit, OnChanges {
 
   openPopup(){
     this.openSettings.emit(null);
+  }
+
+  goToHall(){
+    this.router.navigateByUrl("hall");
   }
 
   startAGame(){
