@@ -41,6 +41,7 @@
         transition:0.4s all;
         color:black;
         border:0.15em solid white;
+        outline: none;
         &:hover{
             cursor:pointer;
           background:rgb(0, 0, 0);
@@ -56,6 +57,14 @@
             transform:rotate(260deg);
             cursor:pointer;
         }
+    }
+    input{
+        font-size: 21px;
+        color: white;
+        width: 8vw;
+        border: 2px solid white;
+        background: transparent;
+        outline: none;
     }
 }
 

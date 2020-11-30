@@ -26,13 +26,14 @@ export class AbilityComponent implements OnInit {
 
 
   buyAbility(){
- 
     if(this.user.checkIfHasMoney(this.price)){
+      console.log("s");
          this.user.buyAbility(this.title, this.price).subscribe((res)=>{
             this.alert = (res=="Sukces") ? "The ability has been bough" : "The buying process malfunctioned";
          })
     }else{
       this.alert = "Not enough $$$";
+      console.log("s");
     }
   }
 
