@@ -2,16 +2,16 @@
 
     require_once("../connections/connection.php");
 
-    $sql = 'SELECT u.nickname, u.rank, u.level, r.performance, r.placement FROM user u INNER JOIN ranking_position ON u.id=r.user_id ORDER BY r.placement';
+    $sql = 'SELECT u.nickname, u.rank, u.level, r.performance, r.placement FROM user u INNER JOIN ranking_position r ON u.id=r.user_id ORDER BY r.placement';
     
     try{
         $stmt = $db_connection->prepare($sql);
         if($stmt){
-            $result = $stmt->execute(array());
+            $result = $stmt->execute();
 
             if($result){
                 $rows = $stmt->fetchAll();
-                return json_encode($rows);
+                echo json_encode($rows);
             }
         }
     }
