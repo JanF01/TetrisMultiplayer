@@ -221,7 +221,7 @@ export class UserService {
 
 
   buyAbility(ability: string, price: number): Observable<any>{
-     const base = this.http.post(`api/buy_ability`,{
+     const base = this.http.post(`http://localhost/tetris/api/buy_ability`,{
        'ability': ability,
        'user_id': this.userDetails.id
      })
@@ -289,7 +289,7 @@ export class UserService {
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
 
-    const base = this.http.get(`api/get_user_abilities?user_id=`+this.userDetails.id,{headers:headers});
+    const base = this.http.get(`http://localhost/tetris/api/get_user_abilities?user_id=`+this.userDetails.id,{headers:headers});
 
     const request = base.pipe(
       map((res: any)=>{
@@ -329,7 +329,7 @@ export class UserService {
   }
 
   updateUser(): Observable<any>{
-    const base = this.http.post(`api/update_user`,{
+    const base = this.http.post(`http://localhost/tetris/api/update_user`,{
       'user_id': this.userDetails.id,
       'level': this.userDetails.level,
       'exp': this.userDetails.experience,
@@ -354,7 +354,7 @@ export class UserService {
     if(!this.alreadySent){
 
       this.alreadySent=true;
-    const base = this.http.post(`api/save_best_games`,{
+    const base = this.http.post(`http://localhost/teteris/api/save_best_games`,{
       'user_id': this.userDetails.id,
       'score': score,
     })
